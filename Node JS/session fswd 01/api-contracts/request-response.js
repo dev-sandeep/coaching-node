@@ -22,10 +22,35 @@ const apis = [
       type: "POST",
       url: "/signup",
       body: {
-        type: 1, //1-user, 2-chef
         name: "", // name of the uset
         email: "", //validate email
         passwd: "", //min 6 character, with special character
+      },
+    },
+    response: {
+      code: 500, //200
+      status: "fail", //success
+      message: "error message", //success message
+    },
+  },
+  //admin signup api
+  {
+    request: {
+      type: "POST",
+      url: "/signup/admin",
+      body: {
+        name: "", // name of the chef
+        address1: '',
+        address2: '',
+        city: '',
+        coordinate: '',
+        state: '',
+        mobile: '',
+        desc: '',
+        email: "", //validate email
+        passwd: "", //min 6 character, with special character
+        image: ''
+        
       },
     },
     response: {
@@ -60,12 +85,104 @@ const apis = [
       ],
     },
   },
+  //Home Page: recently added
+  {
+    request: {
+      type: "GET",
+      url: "/items/latest",
+    },
+    response: {
+      code: 200, //200
+      status: "success",
+      message: "data is loaded",
+      data: [
+        {
+          image: ["url1", "url2"],
+          title: "",
+          price: "",
+          chef: "",
+        },
+        {
+          image: ["url1", "url2"],
+          title: "",
+          price: "",
+          chef: "",
+        },
+      ],
+    },
+  },
+  //Home Page: most ordered
+  {
+    request: {
+      type: "GET",
+      url: "/items/popular",
+    },
+    response: {
+      code: 200, //200
+      status: "success",
+      message: "data is loaded",
+      data: [
+        {
+          image: ["url1", "url2"],
+          title: "",
+          price: "",
+          chef: "",
+        },
+        {
+          image: ["url1", "url2"],
+          title: "",
+          price: "",
+          chef: "",
+        },
+      ],
+    },
+  },
+  //Home Page: top chef
+  {
+    request: {
+      type: "GET",
+      url: "/chef",
+    },
+    response: {
+      code: 200, //200
+      status: "success",
+      message: "data is loaded",
+      data: [
+        {
+            image: ["url1", "url2"],
+            title: "",
+            price: "",
+            chef: "",
+            chef_desc: ""
+        }
+      ],
+    },
+  },
+  //Detail Page
+  {
+    request: {
+      type: "GET",
+      url: "/detal/:item_id",
+    },
+    response: {
+      code: 200, //200
+      status: "success",
+      message: "data is loaded",
+      data: [
+        {
+          dp: "url",
+          name: "",
+          desc: "",
+        }
+      ],
+    },
+  },
   //Admin: your menu
   {
     request: {
       type: "GET",
       url: "/admin-menu",
-      body: {
+      header: {
         token: "", //user token
       },
     },
@@ -88,6 +205,90 @@ const apis = [
         },
       ],
     },
+  },
+  //Admin: add product
+  {
+    request: {
+        type: "POST",
+        url: "/admin/item",
+        header: {
+            token: "", //user token
+          },
+        body: {
+            image: ["url1", "url2"],
+            title: "",
+            price: "",
+            chef: "",
+        },
+      },
+      response: {
+        code: 200,
+        status: "success",
+        message: "success message",
+      },
+  },
+  //Admin: your orders
+  {
+    request: {
+        type: "GET",
+        url: "/admin/orders",
+        header: {
+            token: "", //user token
+          },
+      },
+      response: {
+        code: 200,
+        status: "success",
+        message: "success message",
+        data: [
+            {
+                orderId: '',
+                items: [],
+                customerName: '',
+                price: ''
+            }
+        ]
+      },
+  },
+  //Admin: new order
+  {
+    request: {
+        type: "GET",
+        url: "/admin/orders/new",
+        header: {
+            token: "", //user token
+          },
+      },
+      response: {
+        code: 200,
+        status: "success",
+        message: "success message",
+        data: 
+            {
+                orderId: '',
+                items: [],
+                customerName: '',
+                price: ''
+            }
+      },
+  },
+   //Admin: new order action
+   {
+    request: {
+        type: "POST",
+        url: "/admin/orders/new",
+        header: {
+            token: "", //user token
+          },
+          body: {
+            action: 1// 1 - accepted, 2 - rejected
+          }
+      },
+      response: {
+        code: 200,
+        status: "success",
+        message: "success message",
+      },
   },
   //Address management: one address
   {
