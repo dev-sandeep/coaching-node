@@ -89,10 +89,40 @@ const apis = [
       ],
     },
   },
+  //Address management: one address
   {
     request: {
       type: "GET",
-      url: "/address-management:hash",
+      url: "/address/:hash",
+      headers:{
+        token: ''
+      }
+    },
+    response: {
+      code: 200,
+      status: "success",
+      message: "customer address retrieved",
+      data: {
+          name: "",
+          address: "",
+          city: "",
+          state: "",
+        }
+    },
+    response: {
+      code: 500,
+      status: "failed",
+      message: "customer address does not exist for the Id",
+    },
+  },
+  //Address management: all addresses
+  {
+    request: {
+      type: "GET",
+      url: "/address",
+      headers:{
+        token: ''
+      }
     },
     response: {
       code: 200,
@@ -120,11 +150,14 @@ const apis = [
     },
   },
 
-  //Shreyas/ Prem - Address Management
+  //Address Save
   {
     request: {
       type: "POST",
-      url: "/address-management-save?hash=useridhash",
+      url: "/address",
+      headers: {
+        token: ''//will be used to fetch user id in back end
+      },
       body: {
         name: "", //name check
         address: "", // address check
@@ -163,7 +196,10 @@ const apis = [
   {
     request: {
       type: "GET",
-      url: "/yourorder:hash",
+      url: "/orders",
+      headers: {
+        token: ''//will be used to validate and fetch user id in back end
+      },
     },
     response: {
       code: 200,
@@ -188,16 +224,27 @@ const apis = [
     },
   },
 
-  //sakshi - Cart Page
+  //sakshi - Checkout 
   {
     request: {
       type: "POST",
-      url: "/orderinformation:hash",
+      url: "/order",
       body: {
         reqType: 1,
         CouponCode: "",
+        items: [//List of items and their qty
+            {
+                itemId: 2,
+                qty: 1
+            },
+            {
+                itemId: 3,
+                qty: 2
+            }
+        ],
         name: "", //name check
         address: { add: "addressdetails" }, //address check
+        paymentMode: 1 //1 - COD
       },
       response: {
         code: 200,
@@ -209,65 +256,6 @@ const apis = [
         status: "failed",
         message: "order failed",
       },
-    },
-  },
-
-  //Shreyas - Cart checkout - can be reused for Orders page
-  {
-    request: {
-      type: "GET",
-      url: "/checkout:hash",
-    },
-    response: {
-      code: 200,
-      status: "success",
-      message: "customer orders retrieved",
-      data: [
-        {
-          itemName: "",
-          itemQty: "",
-          itemPrice: "",
-        },
-        {
-          itemName: "",
-          itemQty: "",
-          itemPrice: "",
-        },
-      ],
-    },
-    response: {
-      code: 500,
-      status: "failed",
-      message: "customer orders could not be retrieved",
-    },
-  },
-
-  {
-    request: {
-      type: "POST",
-      url: "/confirm-order:hash",
-    },
-    response: {
-      code: 200,
-      status: "success",
-      message: "order confirmed",
-      data: [
-        {
-          itemName: "",
-          itemQty: "",
-          itemPrice: "",
-        },
-        {
-          itemName: "",
-          itemQty: "",
-          itemPrice: "",
-        },
-      ],
-    },
-    response: {
-      code: 500,
-      status: "failed",
-      message: "order data could not be confirmed",
     },
   },
 ];
