@@ -1,0 +1,83 @@
+CREATE TABLE `Customer` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(255) NOT NULL,
+	`phone` INT NOT NULL,
+	`email` VARCHAR(255) NOT NULL,
+	`token` VARCHAR(255) NOT NULL,
+	`password` VARCHAR(255) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `Address` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`line1` VARCHAR(255) NOT NULL,
+	`line2` VARCHAR(255) NOT NULL,
+	`city` VARCHAR(255) NOT NULL,
+	`state` VARCHAR(255) NOT NULL,
+	`phone` VARCHAR(255) NOT NULL,
+	`cid` VARCHAR(255) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+
+
+CREATE TABLE `Chef` (
+	`id` BINARY NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(255) NOT NULL,
+	`mobile` VARCHAR(255) NOT NULL,
+	`dp_url` VARCHAR(255) NOT NULL,
+	`email` VARCHAR(255) NOT NULL,
+	`desc` VARCHAR(255) NOT NULL,
+	`token` VARCHAR(255) NOT NULL,
+	`password` VARCHAR(255) NOT NULL,
+	`aid` VARCHAR(255) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `Items` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(255) NOT NULL,
+	`price` INT NOT NULL AUTO_INCREMENT,
+	`desc` VARCHAR(255) NOT NULL AUTO_INCREMENT,
+	`ts` TIMESTAMP NOT NULL,
+	`chid` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `Images` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`url` VARCHAR(255) NOT NULL,
+	`itid` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `Orders` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`cid` INT NOT NULL AUTO_INCREMENT,
+	`itid` INT NOT NULL,
+	`qty` INT NOT NULL,
+	`aid` INT NOT NULL,
+	`status` INT NOT NULL DEFAULT '0',
+	PRIMARY KEY (`id`)
+);
+
+ALTER TABLE `Address` ADD CONSTRAINT `Address_fk0` FOREIGN KEY (`cid`) REFERENCES `Customer`(`id`);
+
+ALTER TABLE `Chef` ADD CONSTRAINT `Chef_fk0` FOREIGN KEY (`aid`) REFERENCES `Address`(`id`);
+
+ALTER TABLE `Items` ADD CONSTRAINT `Items_fk0` FOREIGN KEY (`chid`) REFERENCES `Chef`(`id`);
+
+ALTER TABLE `Images` ADD CONSTRAINT `Images_fk0` FOREIGN KEY (`itid`) REFERENCES `Items`(`id`);
+
+ALTER TABLE `Orders` ADD CONSTRAINT `Orders_fk0` FOREIGN KEY (`cid`) REFERENCES `Customer`(`id`);
+
+ALTER TABLE `Orders` ADD CONSTRAINT `Orders_fk1` FOREIGN KEY (`itid`) REFERENCES `Items`(`id`);
+
+ALTER TABLE `Orders` ADD CONSTRAINT `Orders_fk2` FOREIGN KEY (`aid`) REFERENCES `Address`(`id`);
+
+
+
+
+
+
+

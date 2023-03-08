@@ -14,6 +14,9 @@ const apis = [
       code: 500, //200
       status: "fail", //success
       message: "error message", //success message
+      data: {
+        token: ''//this token has to be sent in every call
+      }
     },
   },
   //signup api
@@ -162,19 +165,20 @@ const apis = [
   {
     request: {
       type: "GET",
-      url: "/detal/:item_id",
+      url: "/item/:item_id",
     },
     response: {
       code: 200, //200
       status: "success",
       message: "data is loaded",
-      data: [
-        {
-          dp: "url",
-          name: "",
-          desc: "",
-        }
-      ],
+      data: {
+        image: ["url1", "url2"],
+        title: "",
+        price: "",
+        chef: "",
+        chef_dp: '',
+        chef_desc: ""
+      },
     },
   },
   //Admin: your menu
@@ -331,12 +335,14 @@ const apis = [
       message: "customer address retrieved",
       data: [
         {
+          id: "",
           name: "",
           address: "",
           city: "",
           state: "",
         },
         {
+          id: "",
           name: "",
           address: "",
           city: "",

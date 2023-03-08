@@ -3,6 +3,26 @@ import User from './User.js';
 
 const { Schema, model } = mongoose;
 
+const userSchema = new Schema({
+    fname: {
+        type: String,
+        required: true,
+        minLength: 5,
+        maxLength: 25
+    },
+    address: {
+        type: String,
+        required: true,
+        minLength: 3,
+        maxLength: 50
+    },
+    mob: {
+        type: Number,
+        required: true,
+        minLength: 10,
+        maxLength: 10
+    }
+});
 
 const blogSchema = new Schema(
     {
