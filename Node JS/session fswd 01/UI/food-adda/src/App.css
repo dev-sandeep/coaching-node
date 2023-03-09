@@ -1,38 +1,62 @@
-.App {
-  text-align: center;
+/* Navbar */
+#searchBar {
+  max-width: 700px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Login Page */
+#login-page {
+  background-color: #eff2f6;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.login-container {
+  background-color: #fff;
+  max-width: 500px;
 }
 
-.App-link {
-  color: #61dafb;
+/* Sign up Modal */
+.modal-open .container-fluid,
+.modal-open .container {
+  -webkit-filter: blur(10px) grayscale(70%); /* Blur for modal */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Home Page */
+#home-main-container {
+  background-color: #eff2f6;
+  min-height: 90vh;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff;
+}
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 25vh;
+  object-fit: cover;
+}
+
+/* Product Detail Page */
+#productDetail-container {
+  background-color: #eff2f6;
+  min-height: 90vh;
+}
+#thumbnail:hover {
+  cursor: pointer;
 }
