@@ -3,24 +3,8 @@ import "../App.css";
 import InputField from "../components/InputField";
 import CardWithHeader from "../components/CardWithHeader";
 import CustomButton from "../components/CustomButton";
-
-const dummyAddress = [
-  {
-    address: "Address - 1",
-    name: "Shreyas",
-    fullAddress: "Mangalore, Karnataka- India",
-  },
-  {
-    address: "Address - 2",
-    name: "Shreyas",
-    fullAddress: "Udupi, Karnataka- India",
-  },
-  {
-    address: "Address - 3",
-    name: "Shreyas",
-    fullAddress: "Bangalore, Karnataka- India",
-  },
-];
+//importing dummy address data
+import { dummyAddress } from "../components/dummyData";
 
 const Address = () => {
   //object to hold the address details

@@ -3,29 +3,10 @@ import CartItem from "../components/CartItem";
 import Accordion from "react-bootstrap/Accordion";
 import { Link } from "react-router-dom";
 import CustomButton from "../components/CustomButton";
+//importing dummy item list
+import { dummyItemList } from "../components/dummyData";
 
 function Cart() {
-  //dummyList
-  const dummyItemList = [
-    {
-      title: "Kaju Masala",
-      price: 110,
-      qty: 2,
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr_lJmvmmXm6ZY7rw13cq6aZUOq0SzITX1Cg&usqp=CAU",
-    },
-    {
-      title: "Keema Bharay Baingan",
-      price: 120,
-      qty: 1,
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY2ZiV415XdfAanWSYyuuO0d0pS6oY8skVWQTYYRzntcpgAcXISs4k0ecgf3BV1dTB9OA&usqp=CAU",
-    },
-    {
-      title: "Kobichi Bhaji ",
-      price: 150,
-      qty: 3,
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvRSYByjQVa3jrpxTUTPxNDBj4BJRHugIGaA&usqp=CAU",
-    },
-  ];
   //getting a value array for total
   const total = dummyItemList.map((item) => item.price);
   //total for Showcasing total
