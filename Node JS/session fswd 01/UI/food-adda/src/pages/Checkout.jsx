@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CartItems from "../components/CartItems";
+import CartItem from "../components/CartItem";
 import CardWithHeader from "../components/CardWithHeader";
 import CustomButton from "../components/CustomButton";
 
@@ -104,7 +104,7 @@ function Checkout() {
                   {dummyItemList.map((item) => {
                     return (
                       <div key={item.title}>
-                        <CartItems
+                        <CartItem
                           itemName={item.title}
                           itemImg={item.img}
                           itemPrice={item.price}

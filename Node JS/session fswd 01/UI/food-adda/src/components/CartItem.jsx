@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function CartItems({
+function CartItem({
   itemName,
   itemImg,
   itemPrice,
@@ -68,4 +68,4 @@ function CartItems({
   );
 }
 
-export default CartItems;
+export default CartItem;

@@ -1,5 +1,5 @@
 import React from "react";
-import CartItems from "../components/CartItems";
+import CartItem from "../components/CartItem";
 import Accordion from "react-bootstrap/Accordion";
 import { Link } from "react-router-dom";
 import CustomButton from "../components/CustomButton";
@@ -60,7 +60,7 @@ function Cart() {
                 {dummyItemList.map((item) => {
                   return (
                     <div key={item.title}>
-                      <CartItems
+                      <CartItem
                         itemName={item.title}
                         itemPrice={item.price}
                         itemQty={item.qty}
