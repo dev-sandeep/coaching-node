@@ -60,3 +60,7 @@
 #thumbnail:hover {
   cursor: pointer;
 }
+
+.minH-90 {
+  min-height: 86.7vh;
+}
