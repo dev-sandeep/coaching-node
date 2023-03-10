@@ -64,3 +64,12 @@
 .minH-90 {
   min-height: 86.7vh;
 }
+h1 {
+  text-align: center;
+  margin-top: 2px;
+  padding-top: 5px;
+}
+.hover :hover {
+  background-color: darkorchid;
+  color: white;
+}
