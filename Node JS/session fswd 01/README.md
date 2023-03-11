@@ -23,9 +23,10 @@ db.createCollection('address')
 db.createCollection('items') 
 db.createCollection('images') 
 db.createCollection('chefs') 
-db.createCollection('orders')
+db.createCollection('orders')`
 
- Finally, run the following command to insert data, in each of the above mentioned collection.
+
+Finally, run the following command to insert data, in each of the above mentioned collection.
  `db.customers.insertOne({
         id: 1,
         name: 'sample-customer',
