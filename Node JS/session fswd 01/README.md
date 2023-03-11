@@ -14,6 +14,9 @@ We are using Mongo-db as the database you should open mongo client(mongo compass
 At the bottom you would get the shell to run commands. Run the following commands - 
 <img width="1577" alt="Screenshot 2023-03-08 at 11 35 09 PM" src="https://user-images.githubusercontent.com/7813799/223804265-58476ef2-e62c-410a-b1b2-2ce068fe82a2.png">
 
+<img width="1077" alt="db-design" src="https://user-images.githubusercontent.com/7813799/224490636-47d41dcc-86aa-49db-b144-98ed4b7d3691.png">
+
+
 Run the following command to create and use a database - 
 `use foodadda`
 
