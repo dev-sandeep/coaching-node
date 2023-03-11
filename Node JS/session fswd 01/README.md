@@ -21,7 +21,7 @@ Run the following command to create and use a database -
 `use foodadda`
 
 Following commands would help you to create collections.
-db.createCollection('customers') 
+`db.createCollection('customers') 
 db.createCollection('address') 
 db.createCollection('items') 
 db.createCollection('images') 
