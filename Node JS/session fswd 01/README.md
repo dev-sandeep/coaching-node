@@ -30,54 +30,11 @@ db.createCollection('orders')`
 
 
 Finally, run the following command to insert data, in each of the above mentioned collection.
- `db.customers.insertOne({
-        id: 1,
-        name: 'sample-customer',
-        phone: '+91289289282',
-        email: 'sample@mail.com',
-        token: 'somerandomtext',
-        password: 'sha256encryptedtex'
-    })
- db.address.insertOne({
-        id: 1,
-        line1: '12 BI Lines',
-        line2: 'Lal chawl',
-        city: 'Mumbai',
-        state: 'MH',
-        phone: '+91 920920202892',
-        cid: 1
-    })
- db.chefs.insertOne({
-        id: 1,
-        name: 'BK Sharma',
-        mobile: '+91 39839839383',
-        dp_url: 'http://image.com/some-image-url',
-        email: 'random@mail.com',
-        desc: 'just some test description',
-        token: '83983083038308308skosks3',
-        password: '83983083038308308skosks3',
-        aid: 1,
-    })
- db.items.insertOne({
-        id: 1,
-        name: 'Aloo paratha',
-        price: 100,
-        desc: 'tasty and healthy',
-        ts: '892882',
-        chid: 1,
-    })
-db.images.insertOne({
-        id: 1,
-        url: 'http://image.com/some-image-url',
-        itid: 1,
-    })
- db.orders.insertOne({
-        id: 1,
-        cid: 1,
-        itid: 1,
-        qty: 2,
-        aid: 1,
-        status: 0,
-    })`
+ `db.customers.insertOne({ id: 1, name: 'sample-customer', phone: '+91289289282', email: 'sample@mail.com', token: 'somerandomtext', password: 'sha256encryptedtex' }) <br />
+db.address.insertOne({ id: 1, line1: '12 BI Lines', line2: 'Lal chawl', city: 'Mumbai', state: 'MH', phone: '+91 920920202892', cid: 1 }) <br />
+db.chefs.insertOne({ id: 1, name: 'BK Sharma', mobile: '+91 39839839383', dp_url: 'http://image.com/some-image-url', email: 'random@mail.com', desc: 'just some test description', token: '83983083038308308skosks3', password: '83983083038308308skosks3', aid: 1, }) <br />
+db.items.insertOne({ id: 1, name: 'Aloo paratha', price: 100, desc: 'tasty and healthy', ts: '892882', chid: 1, }) <br />
+db.images.insertOne({ id: 1, url: 'http://image.com/some-image-url', itid: 1, }) <br />
+db.orders.insertOne({ id: 1, cid: 1, itid: 1, qty: 2, aid: 1, status: 0, })<br />`
 
 Congratulations! your database is ready.
