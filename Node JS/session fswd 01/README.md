@@ -18,15 +18,15 @@ Run the following command to create and use a database -
 `use foodadda`
 
 Following commands would help you to create collections.
-`db.createCollection('Customers')
- db.createCollection('Address')
- db.createCollection('Items')
- db.createCollection('Images')
- db.createCollection('Chefs')
- db.createCollection('Orders')`
+db.createCollection('customers') 
+db.createCollection('address') 
+db.createCollection('items') 
+db.createCollection('images') 
+db.createCollection('chefs') 
+db.createCollection('orders')
 
  Finally, run the following command to insert data, in each of the above mentioned collection.
- `db.Customers.insertOne({
+ `db.customers.insertOne({
         id: 1,
         name: 'sample-customer',
         phone: '+91289289282',
@@ -34,7 +34,7 @@ Following commands would help you to create collections.
         token: 'somerandomtext',
         password: 'sha256encryptedtex'
     })
- db.Address.insertOne({
+ db.address.insertOne({
         id: 1,
         line1: '12 BI Lines',
         line2: 'Lal chawl',
@@ -43,7 +43,7 @@ Following commands would help you to create collections.
         phone: '+91 920920202892',
         cid: 1
     })
- db.Chefs.insertOne({
+ db.chefs.insertOne({
         id: 1,
         name: 'BK Sharma',
         mobile: '+91 39839839383',
@@ -54,7 +54,7 @@ Following commands would help you to create collections.
         password: '83983083038308308skosks3',
         aid: 1,
     })
- db.Items.insertOne({
+ db.items.insertOne({
         id: 1,
         name: 'Aloo paratha',
         price: 100,
@@ -62,12 +62,12 @@ Following commands would help you to create collections.
         ts: '892882',
         chid: 1,
     })
-db.Images.insertOne({
+db.images.insertOne({
         id: 1,
         url: 'http://image.com/some-image-url',
         itid: 1,
     })
- db.Orders.insertOne({
+ db.orders.insertOne({
         id: 1,
         cid: 1,
         itid: 1,
