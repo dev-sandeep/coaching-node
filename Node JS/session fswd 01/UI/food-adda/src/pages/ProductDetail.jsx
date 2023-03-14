@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { QuantitySelector } from "../components/QuantitySelector";
+import { Slider } from "../components/Slider";
 
 export const ProductDetail = () => {
   // Array of images
@@ -15,6 +16,7 @@ export const ProductDetail = () => {
 
   return (
     <div id="productDetail-container">
+      <Slider/>
       <Container className="h-100 py-5 px-0">
         {/* Product Detail Page */}
         <Row xs={1} sm={1} md={2} lg={2} className="h-100 w-100 py-5 px-2 mx-0">
