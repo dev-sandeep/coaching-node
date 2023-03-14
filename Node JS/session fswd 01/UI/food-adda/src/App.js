@@ -15,6 +15,7 @@ import Yourmenu from "./pages/Yourmenu";
 import Addproduct from "./pages/Addproduct";
 import Currentorder from "./pages/Currentorder";
 import PreviousOrders from "./pages/PreviousOrders";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/addproduct" element={<Addproduct/>} />
         <Route path="/previousorder" element={<PreviousOrders/>}/>
         <Route path="/currentorder" element={<Currentorder/>}/>
+        <Route path="/signup" element={<Register />}/>
       </Routes>
       <Footer />
     </div>
