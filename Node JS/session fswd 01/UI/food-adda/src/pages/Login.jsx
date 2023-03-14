@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Signup } from "../components/Signup";
 
 export const Login = () => {
   // State variables
@@ -80,17 +79,15 @@ export const Login = () => {
           </Button>
           <p className="text-center mt-3">
             Don't have an account?{" "}
-            <span
+            <Link
               className="text-decoration-underline text-dark"
-              style={{ cursor: "pointer" }}
-              onClick={() => setModalShow(true)}
+              to="/signup"
             >
               Sign Up
-            </span>
+            </Link>
           </p>
         </Form>
       </div>
-      <Signup show={modalShow} onHide={() => setModalShow(false)} />
     </div>
   );
 };
