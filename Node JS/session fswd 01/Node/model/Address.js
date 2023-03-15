@@ -1,6 +1,10 @@
 const { Schema, model } = require("mongoose");
 
 const addressSchema = new Schema({
+  id: {
+    type: Number,
+    required: true,
+  },
   line1: {
     type: String,
     required: true,
