@@ -4,27 +4,35 @@ const { Address } = require("../../../model/Address");
 const { fetchCustomerID } = require("../../utils/getID");
 
 exports.addAddress = async (request, response) => {
-    console.log("entering function")
   const customerData = await fetchCustomerID(request.header("user_id"));
   const customerID = customerData !== undefined ? customerData.id : undefined;
   if (request.header("user_id") && customerID !== undefined) {
-    console.log("if")
     try {
       const { id, line1, line2, city, state, phone } = request.body;
-      await Address.create({
-        id: id,
-        line1: line1,
-        line2: line2,
-        city: city,
-        state: state,
-        phone: phone,
-        cid: customerID,
-      });
-
-      const respObject = responseCreator("address created");
-      response.status(200).send(respObject);
+      if (
+        id !== undefined &&
+        line1 !== undefined &&
+        line2 !== undefined &&
+        city !== undefined &&
+        state !== undefined &&
+        phone !== undefined
+      ) {
+        await Address.create({
+          id: id,
+          line1: line1,
+          line2: line2,
+          city: city,
+          state: state,
+          phone: phone,
+          cid: customerID,
+        });
+        response
+          .status(200)
+          .send(responseCreator("address created successfully"));
+      } else {
+        response.status(400).send(responseCreator("details not provided"));
+      }
     } catch (err) {
-      console.log(err);
       const respObject = responseCreator(
         "customer address does not exist for the Id",
         err
@@ -32,9 +40,8 @@ exports.addAddress = async (request, response) => {
       response.status(500).send(respObject);
     }
   } else {
-    console.log("else")
     response
-    .satus(400)
-      .send(responseCreator("user token not found-bad request"));
+      .status(400)
+      .send(responseCreator("user token not found - bad request"));
   }
 };
