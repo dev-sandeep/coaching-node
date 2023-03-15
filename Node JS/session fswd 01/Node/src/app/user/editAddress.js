@@ -27,6 +27,8 @@ exports.editAddress = async (request, response) => {
             cid: customerID,
           }
         );
+        response.status(200)
+        .send(responseCreator("address updated sucessfully"))
       } else {
         response.status(400).send(responseCreator("details not found"));
       }
