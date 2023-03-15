@@ -9,6 +9,7 @@ var bodyParser = require("body-parser");
 const { productDetails } = require("./user/productDetails");
 const { checkout } = require("./user/checkout");
 const { getAddress } = require("./user/getAddressList");
+const {addAddress} = require("./user/addAddress")
 
 exports.loadRoutes = (app) => {
   app.use(bodyParser.json());
@@ -19,6 +20,7 @@ exports.loadRoutes = (app) => {
   app.get("/item/:item_id", productDetails);
   app.post("/order", checkout);
   app.get("/address", getAddress);
+  app.post("/create_address",addAddress)
 };
 //routes related to home page - home page
 //routes related to user activity - login, signup, checkout, order, address
