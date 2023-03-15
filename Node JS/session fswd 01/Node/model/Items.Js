@@ -25,8 +25,8 @@ const itemsSchema = new Schema({
     type: Number,
     required: true,
   },
-  imgid: {
-    type: Number,
+  imgs: {
+    type: Object,
     required: true,
   },
 });

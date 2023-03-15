@@ -4,6 +4,7 @@ const { Items } = require("../../../model/Items");
 
 exports.productDetails = async (request, response) => {
   try {
+    // creating pipeline for mongodb data json
     const aggregate = await Items.aggregate([
       { $match: { id: parseInt(request.params.item_id) } },
       {
@@ -14,12 +15,44 @@ exports.productDetails = async (request, response) => {
           as: "chef_details",
         },
       },
+      { $unwind: { path: "$imgs" } },
       {
         $lookup: {
           from: "images",
-          localField: "imgid",
+          localField: "imgs.imgid",
           foreignField: "id",
           as: "images",
+        },
+      },
+      {
+        $group: {
+          _id: "$_id",
+          images: {
+            $push: "$images",
+          },
+        },
+      },
+      {
+        $lookup: {
+          from: "items",
+          localField: "_id",
+          foreignField: "_id",
+          as: "itemDetails",
+        },
+      },
+      {
+        $unwind: {
+          path: "$itemDetails",
+        },
+      },
+      {
+        $addFields: {
+          "itemDetails.images": "$images",
+        },
+      },
+      {
+        $replaceRoot: {
+          newRoot: "$itemDetails",
         },
       },
       {
@@ -34,26 +67,15 @@ exports.productDetails = async (request, response) => {
           "images._id": 0,
           "images.id": 0,
           "images.itid": 0,
+          imgs: 0,
         },
       },
     ]);
-    response.send(responseCreator(SUCCESS_REQUEST, { details: aggregate }));
+    //sending the json data as a response
+    response
+      .status(200)
+      .send(responseCreator(SUCCESS_REQUEST, { details: aggregate }));
   } catch (err) {
     console.log(err);
   }
 };
-
-//Success response needs to send
-// response: {
-//   code: 200, //200
-//   status: "success",
-//   message: "data is loaded",
-//   data: {
-//     image: ["url1", "url2"],
-//     title: "",
-//     price: "",
-//     chef: "",
-//     chef_dp: '',
-//     chef_desc: ""
-//   },
-// }
