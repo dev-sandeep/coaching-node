@@ -1,4 +1,7 @@
 {
-    "HASH_KEY": "happy-engineers",
-    "SUCCESS_REQUEST":"Request executed successfully."
+  "HASH_KEY": "happy-engineers",
+  "SUCCESS_REQUEST": "Request executed successfully.",
+  "ORDER_SUCCESS_REQUEST": "Order created successfully",
+  "ORDER_RQUEST_FAILED": "There was an error while creating this order!",
+  "MISSING_TOKEN": "There was an error fetching the Token."
 }
