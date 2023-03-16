@@ -17,6 +17,8 @@ import Currentorder from "./pages/Currentorder";
 import PreviousOrders from "./pages/PreviousOrders";
 import Register from "./pages/Register";
 
+import { Signup } from "./pages/Signup";
+
 function App() {
   return (
     <div className="App">
@@ -27,7 +29,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/product" element={<ProductDetail />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/address" element={<Address />} />
