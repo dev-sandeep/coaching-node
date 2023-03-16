@@ -15,6 +15,8 @@ import Yourmenu from "./pages/Yourmenu";
 import Addproduct from "./pages/Addproduct";
 import Currentorder from "./pages/Currentorder";
 import PreviousOrders from "./pages/PreviousOrders";
+import Register from "./pages/Register";
+
 import { Signup } from "./pages/Signup";
 
 function App() {
@@ -34,9 +36,10 @@ function App() {
         <Route path="/address" element={<Address />} />
         <Route path="/orders" element={<Order />} />
         <Route path="/yourmenu" element={<Yourmenu />} />
-        <Route path="/addproduct" element={<Addproduct />} />
-        <Route path="/previousorder" element={<PreviousOrders />} />
-        <Route path="/currentorder" element={<Currentorder />} />
+        <Route path="/addproduct" element={<Addproduct/>} />
+        <Route path="/previousorder" element={<PreviousOrders/>}/>
+        <Route path="/currentorder" element={<Currentorder/>}/>
+        <Route path="/signup" element={<Register />}/>
       </Routes>
       <Footer />
     </div>
