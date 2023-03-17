@@ -6,7 +6,6 @@ const { Customers } = require("../../../model/Customers");
 exports.signup = async (request, response) => {
   try {
     const { name, phone, email, password } = request.body;
-    console.log(request.body);
     await Customers.create({
       name: name,
       phone: phone,

@@ -5,7 +5,7 @@
 const { signup } = require("./user/signup");
 const { signupMiddleware } = require("./../middleware/signup");
 const { login } = require("./user/login");
-const { singleImageUpload } = require("./admin/singleImageUpload");
+// const { singleImageUpload } = require("./admin/singleImageUpload");
 var bodyParser = require("body-parser");
 const { productDetails } = require("./user/productDetails");
 const { checkout } = require("./user/checkout");
@@ -14,7 +14,7 @@ const { addAddress } = require("./user/addAddress");
 const { editAddress } = require("./user/editAddress");
 const { addressMiddleware } = require("../middleware/address");
 const { tokenCheckMiddleware } = require("../middleware/tokenCheck");
-const { uoloader } = require("../middleware/uploader");
+// const { uoloader } = require("../middleware/uploader");
 
 exports.loadRoutes = (app) => {
   app.use(bodyParser.json());
@@ -26,7 +26,7 @@ exports.loadRoutes = (app) => {
   app.get("/item/:item_id", productDetails); // blame shreyas if any issues
   app.post("/order", tokenCheckMiddleware, checkout); // blame shreyas if any issues
   app.get("/address", tokenCheckMiddleware, getAddress); // blame shreyas and sakshi if any issues
-  app.post('/upload'.single("image"), singleImageUpload);
+  // app.post('/upload'.single("image"), singleImageUpload);
   app.post(
     "/create_address",
     tokenCheckMiddleware,
