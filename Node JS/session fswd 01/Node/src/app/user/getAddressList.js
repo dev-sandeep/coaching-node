@@ -11,7 +11,7 @@ const { Address } = require("../../../model/Address");
 exports.getAddress = async (request, response) => {
   //if token is presents, fetches the customer id from DB
   const customerData = await fetchCustomerID(request.header("token"));
-  const customerID = customerData !== undefined ? customerData.id : undefined;
+  const customerID = customerData !== undefined ? customerData._id : undefined;
   //if the data exists for the token in DB - then does the following
   if (customerID !== undefined) {
     try {
