@@ -10,6 +10,7 @@ const { signupChefMiddleware } = require("./../middleware/signupChef");
 const { login } = require("./user/login");
 const { amdminLogin } = require("./admin/login");
 const { addProduct } = require("./admin/addProducts");
+const { getProducts } = require("./admin/getProducts");
 // const { singleImageUpload } = require("./admin/singleImageUpload");
 var bodyParser = require("body-parser");
 const { productDetails } = require("./user/productDetails");
@@ -43,6 +44,7 @@ exports.loadRoutes = (app) => {
   app.post("/admin/signup", signupChefMiddleware, adminSignup);
   app.post("/admin/login", amdminLogin);
   app.post("/admin/add-products", adminTokenValidate, addProduct);
+  app.get("/admin/products", adminTokenValidate, getProducts);
 };
     // user related goes here
 //routes related to admin activity
