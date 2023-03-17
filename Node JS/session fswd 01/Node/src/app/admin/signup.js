@@ -13,7 +13,7 @@ exports.adminSignup = async (request, response) => {
       mobile: mobile,
       email: email,
       aid: aid,
-      token: createHash(password + HASH_KEY),
+      token: createHash(password + Date.now()),
       password: createHash(password),
     });
 

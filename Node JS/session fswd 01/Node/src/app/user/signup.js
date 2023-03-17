@@ -10,7 +10,7 @@ exports.signup = async (request, response) => {
       name: name,
       phone: phone,
       email: email,
-      token: createHash(password + HASH_KEY),
+      token: createHash(password + Date.now()),
       password: createHash(password),
     });
 
