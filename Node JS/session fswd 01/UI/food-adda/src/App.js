@@ -18,6 +18,7 @@ import PreviousOrders from "./pages/PreviousOrders";
 import Register from "./pages/Register";
 
 import { Signup } from "./pages/Signup";
+import Notfound  from "./components/Notfound";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/previousorder" element={<PreviousOrders/>}/>
         <Route path="/currentorder" element={<Currentorder/>}/>
         <Route path="/signup" element={<Register />}/>
+        <Route path="*" element={<Notfound />}/>
       </Routes>
       <Footer />
     </div>
