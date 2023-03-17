@@ -5,6 +5,7 @@
 const { signup } = require("./user/signup");
 const { signupMiddleware } = require("./../middleware/signup");
 const { login } = require("./user/login");
+const { uploadImage } = require("./admin/uploadImage");
 var bodyParser = require("body-parser");
 const { productDetails } = require("./user/productDetails");
 const { checkout } = require("./user/checkout");
@@ -24,6 +25,7 @@ exports.loadRoutes = (app) => {
   app.get("/item/:item_id", productDetails); // blame shreyas if any issues
   app.post("/order", tokenCheckMiddleware, checkout); // blame shreyas if any issues
   app.get("/address", tokenCheckMiddleware, getAddress); // blame shreyas and sakshi if any issues
+  app.post('/upload',uploadImage);
   app.post(
     "/create_address",
     tokenCheckMiddleware,
@@ -32,6 +34,7 @@ exports.loadRoutes = (app) => {
   ); // blame shreyas and prem if any issues
   app.put("/update_address", tokenCheckMiddleware, editAddress); // blame prem if any issues
 };
+    // user related goes here
 //routes related to home page - home page
 
 //routes related to admin activity
