@@ -19,4 +19,4 @@ exports.fetchChefID = async (token) => {
     }));
 };
 
-//token: request.header("user_id")
+//token: request.header("token")

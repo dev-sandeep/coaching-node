@@ -10,7 +10,7 @@ const { Orders } = require("../../../model/Orders");
 
 exports.checkout = async (request, response) => {
   //sending the token to fetchCustomerID to get the customer ID from DB
-  const customerData = await fetchCustomerID(request.header("user_id"));
+  const customerData = await fetchCustomerID(request.header("token"));
   const customerID = customerData !== undefined ? customerData.id : undefined;
   //if the customerID is not undefined - data exists in DB - then Do the following
   if (customerID !== undefined) {
