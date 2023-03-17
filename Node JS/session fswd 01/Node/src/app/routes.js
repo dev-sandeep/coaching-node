@@ -18,6 +18,7 @@ const { checkout } = require("./user/checkout");
 const { getAddress } = require("./user/getAddressList");
 const { addAddress } = require("./user/addAddress");
 const { editAddress } = require("./user/editAddress");
+const { search } = require("./non-user/search");
 const { addressMiddleware } = require("../middleware/address");
 const { tokenCheckMiddleware } = require("../middleware/tokenCheck");
 // const { uoloader } = require("../middleware/uploader");
@@ -45,6 +46,9 @@ exports.loadRoutes = (app) => {
   app.post("/admin/login", amdminLogin);
   app.post("/admin/add-products", adminTokenValidate, addProduct);
   app.get("/admin/products", adminTokenValidate, getProducts);
+
+  //routes related to normal non-users
+  app.get("/search", search);
 };
     // user related goes here
 //routes related to admin activity
