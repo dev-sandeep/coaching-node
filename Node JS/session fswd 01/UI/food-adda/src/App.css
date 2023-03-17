@@ -49,10 +49,15 @@
 .swiper-slide img {
   display: block;
   width: 100%;
-  height: 25vh;
+  /* height: 25vh; */
+  height: 300px;
   object-fit: cover;
 }
-
+@media screen and (max-width: 767px){
+  .swiper-slide img{
+    height: 25vh;
+  }
+}
 /* Product Detail Page */
 #productDetail-container {
   background-color: #eff2f6;
