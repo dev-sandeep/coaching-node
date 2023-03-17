@@ -7,12 +7,9 @@ exports.uploadImage = (req, res) => {
     const env = require('dotenv');
     env.config();
 
-    var awsCredFile = path.join(__dirname, '.', 'aconfig.json');
+    // var awsCredFile = path.join(__dirname, '.', 'aconfig.json');
 
-    console.log('awsCredFile is');
-    console.log(awsCredFile);
-
-    AWS.config.loadFromPath(awsCredFile);
+    // AWS.config.loadFromPath(awsCredFile);
 
     const photoBucket = new AWS.S3({ 
         accessKeyId: process.env.ACCESS_KEY,
@@ -33,7 +30,7 @@ exports.uploadImage = (req, res) => {
         "user": "579fbe61adac4a8a73b6f508"
     };
 
-    var filePathToSend = path.join(__dirname, '../public', sampleFile.path);
+    // var filePathToSend = path.join(__dirname, '../public', sampleFile.path);
 
 
     function uploadToS3(filepath, destFileName, callback) {
