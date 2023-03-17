@@ -7,6 +7,7 @@ const { adminSignup } = require("./admin/signup");
 const { signupMiddleware } = require("./../middleware/signup");
 const { signupChefMiddleware } = require("./../middleware/signupChef");
 const { login } = require("./user/login");
+const { amdminLogin } = require("./admin/login");
 // const { singleImageUpload } = require("./admin/singleImageUpload");
 var bodyParser = require("body-parser");
 const { productDetails } = require("./user/productDetails");
@@ -26,6 +27,7 @@ exports.loadRoutes = (app) => {
   app.post("/signup", signupMiddleware, signup);
   app.post("/admin/signup", signupChefMiddleware, adminSignup);
   app.post("/login", login);
+  app.post("/admin/login", amdminLogin);
   app.get("/item/:item_id", productDetails); // blame shreyas if any issues
   app.post("/order", tokenCheckMiddleware, checkout); // blame shreyas if any issues
   app.get("/address", tokenCheckMiddleware, getAddress); // blame shreyas and sakshi if any issues
