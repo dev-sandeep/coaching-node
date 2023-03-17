@@ -20,6 +20,7 @@ const { addAddress } = require("./user/addAddress");
 const { editAddress } = require("./user/editAddress");
 const { search } = require("./non-user/search");
 const { recent } = require("./non-user/recent");
+const { topChef } = require("./non-user/topChef");
 const { addressMiddleware } = require("../middleware/address");
 const { tokenCheckMiddleware } = require("../middleware/tokenCheck");
 // const { uoloader } = require("../middleware/uploader");
@@ -51,6 +52,7 @@ exports.loadRoutes = (app) => {
   //routes related to normal non-users
   app.get("/search", search);
   app.get("/recent", recent);
+  app.get("/top-chef", topChef);
 };
     // user related goes here
 //routes related to admin activity
