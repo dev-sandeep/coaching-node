@@ -3,7 +3,9 @@
  */
 
 const { signup } = require("./user/signup");
+const { adminSignup } = require("./admin/signup");
 const { signupMiddleware } = require("./../middleware/signup");
+const { signupChefMiddleware } = require("./../middleware/signupChef");
 const { login } = require("./user/login");
 // const { singleImageUpload } = require("./admin/singleImageUpload");
 var bodyParser = require("body-parser");
@@ -22,11 +24,11 @@ exports.loadRoutes = (app) => {
   // user related goes here
   //routes related to user activity - login, signup, checkout, order, address
   app.post("/signup", signupMiddleware, signup);
+  app.post("/admin/signup", signupChefMiddleware, adminSignup);
   app.post("/login", login);
   app.get("/item/:item_id", productDetails); // blame shreyas if any issues
   app.post("/order", tokenCheckMiddleware, checkout); // blame shreyas if any issues
   app.get("/address", tokenCheckMiddleware, getAddress); // blame shreyas and sakshi if any issues
-  // app.post('/upload'.single("image"), singleImageUpload);
   app.post(
     "/create_address",
     tokenCheckMiddleware,
