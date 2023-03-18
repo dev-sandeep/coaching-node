@@ -42,12 +42,17 @@ function OrderDetails() {
                           <p>{moment(item.ts).fromNow()}</p>
                         </div>
                         <Card.Subtitle className="  mb-2 p-2">
-                          {item.items.map((item) => {
-                            return `${item.itemId} x ${item.qty} `;
+                          {item.items.map((item, j) => {
+                            return `${ordersList[i].itemList[j].name} x ${item.qty} `;
                           })}
                         </Card.Subtitle>
 
-                        <Card.Text>${item.items[i].itemId}</Card.Text>
+                        <Card.Text>
+                          $
+                          {item.items.map((item, k) => {
+                            return item.qty * ordersList[i].itemList[k].price;
+                          })}
+                        </Card.Text>
                       </Card.Body>
                     </Card>
                   );

@@ -14,9 +14,6 @@ exports.getOrders = async (request, response) => {
   const customerID = customerData !== undefined ? customerData.id : undefined;
   if (customerID !== undefined) {
     try {
-      // const ordersList = await Orders.find({ cid: customerID }, "items ts", {
-      //   lean: true,
-      // });
       const aggregate = await Orders.aggregate([
         { $match: { cid: customerID } },
         { $unwind: { path: "$items" } },
@@ -33,6 +30,7 @@ exports.getOrders = async (request, response) => {
             _id: "$_id",
             items: {
               $push: {
+                id: "$items.id",
                 name: "$items.name",
                 price: "$items.price",
               },
@@ -63,28 +61,22 @@ exports.getOrders = async (request, response) => {
           },
         },
         {
-          $addFields: {
-            "itemList.qty": "$items.qty",
-          },
-        },
-        {
           $project: {
             _id: 0,
             cid: 0,
             aid: 0,
             status: 0,
             __v: 0,
-            items: 0,
           },
         },
       ]);
-      // if (ordersList !== undefined) {
-      response
-        .status(200)
-        .send(responseCreator(ORDER_LIST_RETRIEVED, aggregate));
-      // } else {
-      // response.status(200).send(responseCreator(EMPTY_ORDERS_LIST));
-      // }
+      if (aggregate !== undefined) {
+        response
+          .status(200)
+          .send(responseCreator(ORDER_LIST_RETRIEVED, aggregate));
+      } else {
+        response.status(200).send(responseCreator(EMPTY_ORDERS_LIST));
+      }
     } catch (error) {
       console.log(error);
       response.status(500).send(responseCreator(ERROR_FETCHING_DATA));
