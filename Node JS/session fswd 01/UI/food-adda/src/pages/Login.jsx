@@ -1,11 +1,28 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toastError, toastSuccess } from "./../Utils/toast";
+import { postCall } from "./../Utils/api";
+import env_vars from "./../Utils/constants";
+import {setSession} from "./../Utils/session";
+import { useDispatch, useSelector } from "react-redux";
+import { logInAction } from "../Redux/Actions/user";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
+  const session = useSelector((state) => state.user);
   // State variables
-  const [modalShow, setModalShow] = useState(false);
+  const [userType, setUserType] = useState(1);//1 - Customer, 2 - Admin
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  React.useEffect(()=>{
+    if(session.type === 1){
+      navigate("/");
+    } else if(session.type === 2){
+      navigate("/yourmenu");
+    }
+  },[session])
 
   // Login handler function
   const loginHandler = (e) => {
@@ -14,18 +31,32 @@ export const Login = () => {
     const email = e.target.elements.formBasicEmail.value;
     const password = e.target.elements.formBasicPassword.value;
     const role = e.target.elements.group1.value;
-    console.log(email, password, role);
-    // Toast success message
-    toast.success("Login Successful", {
-      position: "top-center",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
+
+
+    postCall({
+      header: {},
+      body: {
+        email,
+        password
+      },
+      url: env_vars.base_url + (userType === 1 ? env_vars.apis.login : env_vars.apis.admin_login)
+    }).then((resp) => {
+      const token = resp.data?.data?.token;
+      setSession({
+        token,
+        type: userType
+      });
+
+      dispatch(logInAction({
+        token,
+        type: userType
+      }));
+
+      toastSuccess("loggedin successful");
+    }, () => {
+      toastError("login fail");
+    })
+  }
 
   return (
     <div id="login-page" className="px-2 px-lg-0">
@@ -48,6 +79,8 @@ export const Login = () => {
                 type="radio"
                 id="inline-radio-1"
                 required
+                onChange={() => setUserType(2)}
+                checked={userType === 2}
               />
               <Form.Check
                 inline
@@ -56,6 +89,8 @@ export const Login = () => {
                 value={"customer"}
                 type="radio"
                 id="inline-radio-2"
+                onChange={() => setUserType(1)}
+                checked={userType === 1}
               />
             </div>
           </div>

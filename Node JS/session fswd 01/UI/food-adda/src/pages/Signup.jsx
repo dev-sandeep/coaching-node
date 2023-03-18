@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { postCall } from "./../Utils/api";
