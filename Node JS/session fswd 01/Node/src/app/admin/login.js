@@ -1,9 +1,9 @@
 const { SUCCESS_REQUEST } = require("../../utils/constants.json");
 const { responseCreator } = require("../../utils/responseCreator");
-const { Customers } = require("../../../model/Customers");
+const { Chefs } = require("../../../model/Chefs");
 const { createHash } = require("../../utils/utils");
 
-exports.login = async (request, response)=>{
+exports.amdminLogin = async (request, response)=>{
     const { email, password } = request.body;
     if(!email || !password){
         response.status(400).send(responseCreator("Email and Password are mandatory field."));
@@ -11,7 +11,7 @@ exports.login = async (request, response)=>{
     /**
      * checking if data exists 
      */
-    const findData = await Customers.find({
+    const findData = await Chefs.find({
         email,
         password: createHash(password)
     })

@@ -1,10 +1,6 @@
 const { Schema, model } = require("mongoose");
 
 const addressSchema = new Schema({
-  id: {
-    type: Number,
-    required: true,
-  },
   line1: {
     type: String,
     required: true,
@@ -26,7 +22,7 @@ const addressSchema = new Schema({
     required: true,
   },
   cid: {
-    type: Number,
+    type: String,
     required: true,
   },
 });

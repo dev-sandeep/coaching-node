@@ -14,7 +14,7 @@ export const Slider = () => {
     <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
       {images.map((image, index) => {
         return (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className="slider-custom">
             <img src={image} className="" alt="" />
           </SwiperSlide>
         );

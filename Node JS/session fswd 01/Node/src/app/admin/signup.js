@@ -1,15 +1,18 @@
 const { SUCCESS_REQUEST, HASH_KEY } = require("../../utils/constants.json");
 const { responseCreator } = require("../../utils/responseCreator");
 const { createHash } = require("../../utils/utils");
-const { Customers } = require("../../../model/Customers");
+const { Chefs } = require("../../../model/Chefs");
 
-exports.signup = async (request, response) => {
+exports.adminSignup = async (request, response) => {
   try {
-    const { name, phone, email, password } = request.body;
-    await Customers.create({
+    const { name, mobile, dp_url, email, desc, password, aid } = request.body;
+    await Chefs.create({
       name: name,
-      phone: phone,
+      dp_url: dp_url,
+      desc: desc,
+      mobile: mobile,
       email: email,
+      aid: aid,
       token: createHash(password + Date.now()),
       password: createHash(password),
     });
@@ -22,3 +25,6 @@ exports.signup = async (request, response) => {
     response.status(400).send(respObject);
   }
 };
+
+
+// name, mobile, dp_url, email, desc, password, aid

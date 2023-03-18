@@ -3,7 +3,7 @@ const { Address } = require("../../../model/Address");
 const { responseCreator } = require("../../utils/responseCreator");
 
 exports.editAddress = async (request, response) => {
-  const customerData = await fetchCustomerID(request.header("user_id"));
+  const customerData = await fetchCustomerID(request.header("token"));
   const customerID = customerData !== undefined ? customerData.id : undefined;
   const { addressid, line1, line2, city, state, phone } = request.body;
   if (addressid !== undefined) {

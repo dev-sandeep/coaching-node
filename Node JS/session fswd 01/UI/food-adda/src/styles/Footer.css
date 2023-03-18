@@ -1,0 +1,12 @@
+/* .relative{
+    margin-top: 40%;
+} */
+.footer-custom{
+    position: absolute;
+    bottom: 0%;
+}
+.relative{
+    position: relative;
+    bottom: 0%;
+    width: 100%;
+}

@@ -10,13 +10,12 @@ const { Address } = require("../../../model/Address");
 const { fetchCustomerID } = require("../../utils/getID");
 
 exports.addAddress = async (request, response) => {
-  const customerData = await fetchCustomerID(request.header("user_id"));
-  const customerID = customerData !== undefined ? customerData.id : undefined;
+  const customerData = await fetchCustomerID(request.header("token"));
+  const customerID = customerData !== undefined ? customerData._id : undefined;
   if (customerID !== undefined) {
     try {
-      const { id, line1, line2, city, state, phone } = request.body;
+      const { line1, line2, city, state, phone } = request.body;
       if (
-        id !== undefined &&
         line1 !== undefined &&
         line2 !== undefined &&
         city !== undefined &&
@@ -24,7 +23,6 @@ exports.addAddress = async (request, response) => {
         phone !== undefined
       ) {
         await Address.create({
-          id: id,
           line1: line1,
           line2: line2,
           city: city,
