@@ -8,3 +8,6 @@ export const ADD_QUANTITY = "ADD_QUANTITY";
 export const REMOVE_QUANTITY = "REMOVE_QUANTITY";
 export const UPDATE_TOTAL = "UPDATE_TOTAL";
 export const UPDATE_TOTAL_PRICE = "UPDATE_TOTAL_PRICE";
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+
