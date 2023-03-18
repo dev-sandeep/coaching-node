@@ -5,7 +5,8 @@ const env_vars = {
         user_signup: '/signup',
         login: '/login',
         admin_login: '/admin/login',
-        admin_add_product: '/admin/add-products'
+        admin_add_product: '/admin/add-products',
+        admin_products: '/admin/products'
     },
     sample:{
         user: 'https://loremflickr.com/320/240/user'
