@@ -11,7 +11,7 @@ const { login } = require("./user/login");
 const { amdminLogin } = require("./admin/login");
 const { addProduct } = require("./admin/addProducts");
 const { getProducts } = require("./admin/getProducts");
-// const { singleImageUpload } = require("./admin/singleImageUpload");
+const { singleImageUpload } = require("./admin/image/singleImageUpload");
 var bodyParser = require("body-parser");
 const { productDetails } = require("./user/productDetails");
 const { checkout } = require("./user/checkout");
@@ -23,7 +23,7 @@ const { recent } = require("./non-user/recent");
 const { topChef } = require("./non-user/topChef");
 const { addressMiddleware } = require("../middleware/address");
 const { tokenCheckMiddleware } = require("../middleware/tokenCheck");
-// const { uoloader } = require("../middleware/uploader");
+const { uploader, uploadMiddleware } = require("../middleware/uploader");
 
 exports.loadRoutes = (app) => {
   app.use(bodyParser.json());
@@ -45,6 +45,7 @@ exports.loadRoutes = (app) => {
 
   //routes related to admins
   app.post("/admin/signup", signupChefMiddleware, adminSignup);
+  app.post("/upload", uploader.single("image"), uploadMiddleware, singleImageUpload);
   app.post("/admin/login", amdminLogin);
   app.post("/admin/add-products", adminTokenValidate, addProduct);
   app.get("/admin/products", adminTokenValidate, getProducts);

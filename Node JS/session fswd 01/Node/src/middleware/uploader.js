@@ -1,41 +1,35 @@
-const express = require("express");
-const app = express();
-const env = require('dotenv');
-const multer = require("multer");
-const path = require("path");
+const multer = require('multer');
+const path = require('path');
 
-env.config();
-
-//Setting storage engine
-const storageEngine = multer.diskStorage({
-    destination: "./images",
-    filename: (req, file, cb) => {
-        cb(null, `${Date.now()}--${file.originalname}`);
-    },
+// configure the storage engine for Multer
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'images/');
+  },
+  filename: function(req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
 });
 
-// checking for the allowed file extensions
-const checkFileType = function (file, cb) {
-    //Allowed ext
-    const fileTypes = /jpeg|jpg|png|gif|svg/;
-  
-    //check ext
-    const extName = fileTypes.test(path.extname(file.originalname));
-    console.log(path.extname(file.originalname));
-  
-    const mimeType = fileTypes.test(file.mimetype);
-  
-    if (mimeType && extName) {
-      return cb(null, true);
+// create the Multer middleware with the storage engine and file filter
+exports.uploader = multer({
+  storage: storage,
+  fileFilter: function(req, file, cb) {
+    if (file.mimetype.startsWith('image/')) {
+      cb(null, true);
     } else {
-      cb("Error: You can Upload Images Only!!");
-    }   
-  };
-
-export const upload = multer({
-    storage: storageEngine,
-    limits: { fileSize: 10000000 },
-    fileFilter: (req, file, cb) => {
-        checkFileType(file, cb);
-    },
+      cb(new Error('Only image files are allowed.'));
+    }
+  },
 });
+
+exports.uploadMiddleware = (req, res, next) => {
+  const file = req.file;
+  if (!file) {
+    const error = new Error('Please upload an image file.');
+    error.status = 400;
+    return send(error);
+  }
+  next();
+  // res.send({ filename: file.filename });
+}

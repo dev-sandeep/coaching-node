@@ -1,7 +1,10 @@
-exports.singleImageUploader = async (req, res) => {
-    if (req.file) {
-        res.send("Single file uploaded successfully");
-    } else {
-        res.status(404).send("Please upload a valid image");
+
+exports.singleImageUpload = (req, res) => {
+    const file = req.file;
+    if (!file) {
+      const error = new Error('Please upload an image file.');
+      error.status = 400;
+      return send(error);
     }
-}
+    res.send({ uploadedFile: file.filename });
+  }
