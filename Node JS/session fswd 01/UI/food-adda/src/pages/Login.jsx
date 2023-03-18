@@ -31,7 +31,7 @@ export const Login = () => {
     <div id="login-page" className="px-2 px-lg-0">
       <div className="login-container d-flex flex-column align-items-center py-4 px-2 rounded shadow-lg">
         <img
-          src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9nb3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60"
+          src="https://foodadda.s3.ap-south-1.amazonaws.com/logo-login.png"
           className="w-75 rounded"
           alt=""
         />

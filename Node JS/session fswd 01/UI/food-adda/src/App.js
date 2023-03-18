@@ -2,22 +2,22 @@ import "./App.css";
 import { NavbarTop } from "./components/NavbarTop";
 import { NavbarAdmin } from "./components/NavbarAdmin";
 import { Routes, Route } from "react-router-dom";
-import { Home } from "./pages/Home";
-import { Login } from "./pages/Login";
-import { ProductDetail } from "./pages/ProductDetail";
+import { Home } from "./Pages/Home";
+import { Login } from "./Pages/Login";
+import { ProductDetail } from "./Pages/ProductDetail";
 import { Footer } from "./components/Footer";
 import { ToastContainer } from "react-toastify";
-import Cart from "./pages/Cart";
-import Address from "./pages/Address";
-import Checkout from "./pages/Checkout";
-import Order from "./pages/Order";
-import Yourmenu from "./pages/Yourmenu";
-import Addproduct from "./pages/Addproduct";
-import Currentorder from "./pages/Currentorder";
-import PreviousOrders from "./pages/PreviousOrders";
-import Register from "./pages/Register";
+import Cart from "./Pages/Cart";
+import Address from "./Pages/Address";
+import Checkout from "./Pages/Checkout";
+import Order from "./Pages/Order";
+import Yourmenu from "./Pages/Yourmenu";
+import Addproduct from "./Pages/Addproduct";
+import Currentorder from "./Pages/Currentorder";
+import PreviousOrders from "./Pages/PreviousOrders";
+import Register from "./Pages/Register";
 
-import { Signup } from "./pages/Signup";
+import { Signup } from "./Pages/Signup";
 import Notfound  from "./components/Notfound";
 
 function App() {
