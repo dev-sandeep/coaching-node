@@ -1,13 +1,38 @@
 import { useState } from "react";
+import { postCall } from "./../Utils/api";
+import { getSession } from "./../Utils/session";
+import { toastError, toastSuccess } from "./../Utils/toast";
+import { useNavigate } from "react-router-dom";
+import env_vars from "./../Utils/constants";
 
 export default function Addproduct() {
   const [form, setForm] = useState({});
+  const navigate = useNavigate();
   const handleFormChange = (event) => {
     setForm({ ...form, [event.target.id]: event.target.value });
   };
+  const url = env_vars.base_url+env_vars.apis.admin_add_product
+
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(form);
+    const session = getSession();
+    postCall({
+      headers: {
+        token: session.token
+      },
+      body:{
+        "name": form.item_title,
+        "price": form.item_price,
+        "desc": form.item_desc
+      },
+      url
+    }).then(()=>{
+      toastSuccess("Item added");
+      navigate("/yourmenu");
+    }, (err)=>{
+      console.error(err);
+      toastError("Error occurred");
+    })
   };
 
   return (
@@ -27,6 +52,7 @@ export default function Addproduct() {
                     placeholder="Item Title"
                     value={form?.item_title || ""}
                     onChange={handleFormChange}
+                    required
                   />
                 </div>
                 <div className="form-group mb-3">
@@ -37,6 +63,7 @@ export default function Addproduct() {
                     placeholder="Item Description"
                     value={form?.item_desc || ""}
                     onChange={handleFormChange}
+                    required
                   />
                 </div>
                 <div className="form-group mb-3">
@@ -48,6 +75,7 @@ export default function Addproduct() {
                     placeholder="Item Price"
                     value={form?.item_price || ""}
                     onChange={handleFormChange}
+                    required
                   />
                 </div>
                 <div className="form-group">

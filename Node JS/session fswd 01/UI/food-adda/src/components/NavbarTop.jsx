@@ -71,7 +71,7 @@ export const NavbarTop = () => {
                   >
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                     {type === 2 &&
-                      <NavDropdown.Item href="#action/3.2">
+                      <NavDropdown.Item as={Link} to="/addproduct">
                         Add Item
                       </NavDropdown.Item>}
                     {type === 2 &&
