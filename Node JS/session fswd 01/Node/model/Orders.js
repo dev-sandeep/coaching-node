@@ -2,11 +2,11 @@ const { Schema, model } = require("mongoose");
 
 const orderSchema = new Schema({
   cid: {//customer id
-    type: String,
+    type: Schema.ObjectId,
     required: true,
   },
   itid: {//item id
-    type: String,
+    type: Schema.ObjectId,
     required: true,
   },
   qty: {
@@ -14,7 +14,7 @@ const orderSchema = new Schema({
     required: true,
   },
   aid: {//address id
-    type: String,
+    type: Schema.ObjectId,
     required: true,
   },
   status: {

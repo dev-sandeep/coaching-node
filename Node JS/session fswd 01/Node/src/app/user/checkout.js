@@ -7,6 +7,7 @@ const {
 const { responseCreator } = require("../../utils/responseCreator");
 const { fetchCustomerID } = require("../../utils/getID");
 const { Orders } = require("../../../model/Orders");
+const mongodb = require('mongodb');
 
 exports.checkout = async (request, response) => {
   //sending the token to fetchCustomerID to get the customer ID from DB
@@ -26,10 +27,10 @@ exports.checkout = async (request, response) => {
       ) {
         //creates new order
         await Orders.create({
-          cid: customerID,
-          itid: itemId,
+          cid: new mongodb.ObjectId(customerID),
+          itid: new mongodb.ObjectId(itemId),
           qty: qty,
-          aid: addressId,
+          aid: new mongodb.ObjectId(addressId),
           status: 0,//pending
           ts: Date.now()
         });
