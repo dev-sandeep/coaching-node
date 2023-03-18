@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
 import moment from "moment/moment";
-//getting dummy data from import
-import { dummyOrders } from "./dummyData";
 
 function OrderDetails() {
   const [ordersList, setOrdersList] = useState([]);
@@ -20,6 +18,16 @@ function OrderDetails() {
       console.log(error);
     }
   };
+  let totalArray;
+  if (ordersList[0] !== undefined) {
+    totalArray = ordersList.map((item, i) => {
+      return item.items
+        .map((itemx, j) => {
+          return itemx.qty * item.itemList[j].price;
+        })
+        .reduce((accumulator, currentValue) => accumulator + currentValue);
+    });
+  }
 
   useEffect(() => {
     orderListReq();
@@ -47,12 +55,7 @@ function OrderDetails() {
                           })}
                         </Card.Subtitle>
 
-                        <Card.Text>
-                          $
-                          {item.items.map((item, k) => {
-                            return item.qty * ordersList[i].itemList[k].price;
-                          })}
-                        </Card.Text>
+                        <Card.Text>${totalArray[i]}</Card.Text>
                       </Card.Body>
                     </Card>
                   );
