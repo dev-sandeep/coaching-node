@@ -1,19 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function CartItem({
   itemName,
   itemImg,
   itemPrice,
   itemQty,
-  onClickFunction = () => {},
+  itemIndex,
+  onChange = () => {},
+  onClickFunction = (i) => {},
 }) {
   const [quant, setQuant] = useState(itemQty || 1);
+  const [price, setPrice] = useState(itemPrice * itemQty);
   const handleClickAdd = () => {
     setQuant(quant + 1);
   };
   const handleClickRemove = () => {
     setQuant(quant - 1);
   };
+  useEffect(() => {
+    setPrice(quant * itemPrice);
+  }, [quant, price]);
+  useEffect(() => {
+    onChange(price, itemIndex, quant);
+  }, [price, quant]);
   return (
     <div className="p-xl-4 p-1">
       <div className="row">
@@ -52,7 +61,7 @@ function CartItem({
             </div>
           </div>
           <div className="fs-4 fw-bold mt-1">
-            <span>${itemPrice}</span>
+            <span>${price}</span>
           </div>
         </div>
         <div className="col-sm-1 align-bottom d-flex">

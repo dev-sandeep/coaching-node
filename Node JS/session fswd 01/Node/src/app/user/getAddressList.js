@@ -11,14 +11,14 @@ const { Address } = require("../../../model/Address");
 exports.getAddress = async (request, response) => {
   //if token is presents, fetches the customer id from DB
   const customerData = await fetchCustomerID(request.header("token"));
-  const customerID = customerData !== undefined ? customerData._id : undefined;
+  const customerID = customerData !== undefined ? customerData.id : undefined;
   //if the data exists for the token in DB - then does the following
   if (customerID !== undefined) {
     try {
       //fetches the address data from the Address collection in DB
       const addressList = await Address.find(
         { cid: customerID },
-        "line1 line2 city state",
+        "id line1 line2 city state",
         { lean: true }
       );
       //if no address is fetched from DB - No address exists for the Customer in DB - returns error, else gives success message with address list

@@ -8,5 +8,8 @@
   "BAD_REQUEST": "Bad Request",
   "ADDRESS_NOT_FOUND": "Address could not be fetched",
   "MISSING_DETAILS": "Required fields missing",
-  "ADDRESS_NOT_CREATED": "Address creation Failed"
+  "ADDRESS_NOT_CREATED": "Address creation Failed",
+  "ORDER_LIST_RETRIEVED": "Order list retrieved",
+  "EMPTY_ORDERS_LIST": "Order list empty",
+  "ERROR_FETCHING_DATA": "There was an error fetching the data"
 }

@@ -11,6 +11,7 @@ function CardWithHeader({
   header,
   title,
   desc,
+  itemID,
   onClickFunction = () => {},
   currentSelected,
 }) {
@@ -21,7 +22,7 @@ function CardWithHeader({
           className={`${
             currentSelected === header ? "bg-dark text-white" : null
           }`}
-          onClick={(e) => onClickFunction(header)}
+          onClick={(e) => onClickFunction(header, itemID)}
         >
           <Card.Header>{header}</Card.Header>
           <Card.Body>
