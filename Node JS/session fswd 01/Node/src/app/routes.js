@@ -22,6 +22,7 @@ const { search } = require("./non-user/search");
 const { recent } = require("./non-user/recent");
 const { topChef } = require("./non-user/topChef");
 const { addressMiddleware } = require("../middleware/address");
+const { emptyImageTempFolder } = require("../middleware/emptyImageTempFolder");
 const { tokenCheckMiddleware } = require("../middleware/tokenCheck");
 const { uploader, uploadMiddleware } = require("../middleware/uploader");
 
@@ -45,7 +46,7 @@ exports.loadRoutes = (app) => {
 
   //routes related to admins
   app.post("/admin/signup", signupChefMiddleware, adminSignup);
-  app.post("/upload", uploader.single("image"), uploadMiddleware, singleImageUpload);
+  app.post("/upload", adminTokenValidate, emptyImageTempFolder, uploader.single("image"), uploadMiddleware, singleImageUpload);
   app.post("/admin/login", amdminLogin);
   app.post("/admin/add-products", adminTokenValidate, addProduct);
   app.get("/admin/products", adminTokenValidate, getProducts);
