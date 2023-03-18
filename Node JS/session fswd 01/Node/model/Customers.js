@@ -11,6 +11,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  id: {
+    type: String,
+    default: Date.now()
+  },
   token: String,
 });
 

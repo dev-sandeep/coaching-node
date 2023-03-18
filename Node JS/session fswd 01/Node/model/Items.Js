@@ -2,8 +2,8 @@ const { Schema, model } = require("mongoose");
 
 const itemsSchema = new Schema({
   id: {
-    type: Number,
-    required: true,
+    type: String,
+    default: Date.now()
   },
   name: {
     type: String,

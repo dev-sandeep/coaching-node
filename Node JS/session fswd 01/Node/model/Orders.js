@@ -1,6 +1,10 @@
 const { Schema, model } = require("mongoose");
 
 const orderSchema = new Schema({
+  id: {
+    type: String,
+    default: Date.now()
+  },
   cid: {
     //customer id
     type: Number,

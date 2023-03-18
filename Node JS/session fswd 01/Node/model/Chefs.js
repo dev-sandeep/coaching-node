@@ -1,6 +1,10 @@
 const { Schema, model } = require("mongoose");
 
 const chefSchema = new Schema({
+  id: {
+    type: String,
+    default: Date.now()
+  },
   name: {
     type: String,
     required: true,
