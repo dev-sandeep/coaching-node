@@ -7,14 +7,6 @@ exports.productDetails = async (request, response) => {
     // creating pipeline for mongodb data json
     const aggregate = await Items.aggregate([
       { $match: { id: parseInt(request.params.item_id) } },
-      {
-        $lookup: {
-          from: "chefs",
-          localField: "chid",
-          foreignField: "id",
-          as: "chef_details",
-        },
-      },
       { $unwind: { path: "$imgs" } },
       {
         $lookup: {
@@ -28,7 +20,7 @@ exports.productDetails = async (request, response) => {
         $group: {
           _id: "$_id",
           images: {
-            $push: "$images",
+            $push: "$images.url",
           },
         },
       },
@@ -53,6 +45,14 @@ exports.productDetails = async (request, response) => {
       {
         $replaceRoot: {
           newRoot: "$itemDetails",
+        },
+      },
+      {
+        $lookup: {
+          from: "chefs",
+          localField: "chid",
+          foreignField: "id",
+          as: "chef_details",
         },
       },
       {

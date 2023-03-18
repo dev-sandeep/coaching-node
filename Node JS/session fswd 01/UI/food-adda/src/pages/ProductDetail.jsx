@@ -1,28 +1,70 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { QuantitySelector } from "../components/QuantitySelector";
 import { Slider } from "../components/Slider";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../Redux/Actions/cart";
 
 export const ProductDetail = () => {
-  // Array of images
-  const images = [
-    "https://images.unsplash.com/photo-1677414519330-b95a8ee85c67?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDI0fHhqUFI0aGxrQkdBfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    "https://images.unsplash.com/photo-1675790944856-ef756a57dd89?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDQ4fHhqUFI0aGxrQkdBfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    "https://images.unsplash.com/photo-1675914850327-87b816de133e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDc0fHhqUFI0aGxrQkdBfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-  ];
-
+  //redux store
+  const quantity = useSelector((state) => state.quantity);
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  //params
+  const { id } = useParams();
   // State variables
-  const [currImg, setCurrImg] = useState(images[0]);
+  const [images, setImages] = useState([]);
+  const [currImg, setCurrImg] = useState("");
+  const [productDetails, setProductDetails] = useState([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      resHandler();
+    });
+  }, []);
+
+  const resHandler = async () => {
+    const res = await axios.get(`http://127.0.0.1:5002/item/${id}`);
+    setProductDetails(res.data.data.details[0]);
+    setImages(res.data.data.details[0].images);
+    setCurrImg(res.data.data.details[0].images[0]);
+  };
+
+  if (productDetails === undefined) {
+    return <div>Loading...</div>;
+  }
+
+  //button functions
+
+  function handleAddToCart() {
+    console.log("add");
+    dispatch(
+      addToCart({
+        id: productDetails.id,
+        name: productDetails.name,
+        price: productDetails.price,
+        qty: quantity,
+        img: currImg[0],
+      })
+    );
+    console.log(cart);
+  }
 
   return (
     <div id="productDetail-container">
-      <Slider/>
+      <Slider />
       <Container className="h-100 py-5 px-0">
         {/* Product Detail Page */}
         <Row xs={1} sm={1} md={2} lg={2} className="h-100 w-100 py-5 px-2 mx-0">
           <Col className="">
             <div className="ratio ratio-1x1 w-100">
-              <img className="w-100 h-100" src={currImg} alt="" />
+              <img
+                className="w-100 h-100"
+                src={currImg}
+                alt={productDetails.name}
+              />
             </div>
 
             {/* Images from array as thumbnail */}
@@ -35,33 +77,34 @@ export const ProductDetail = () => {
                   style={{ width: "70px" }}
                   id="thumbnail"
                   className="border-dark border-2 border mx-1"
-                  onClick={() => setCurrImg(image)}
+                  onClick={() => setCurrImg(image[0])}
                 >
-                  <img className="w-100 h-100" src={image} alt="" />
+                  <img
+                    className="w-100 h-100"
+                    src={image}
+                    alt={productDetails.name}
+                  />
                 </div>
               ))}
             </div>
           </Col>
           <Col>
             <div>
-              <h1 className="fw-bold mt-5">Product Name</h1>
-              <p className="fs-3">$99</p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
-                fuga consequatur officia pariatur fugiat maiores dolorem
-                blanditiis nam ipsum illum quo eligendi quod at officiis optio
-                commodi iste voluptatem repellat.
-              </p>
+              <h1 className="fw-bold mt-5">{productDetails.name}</h1>
+              <p className="fs-3">${productDetails.price}</p>
+              <p>{productDetails.desc}</p>
               <h3 className="mt-5">About Chef</h3>
               <Row className="flex-column-reverse flex-sm-row">
                 <Col sm={10}>
-                  <big className="fw-semibold">Chef's Name</big>
+                  <big className="fw-semibold">
+                    {productDetails.chef_details &&
+                      productDetails.chef_details[0].name}
+                  </big>
                   <br />
                   <small className="text-muted">Restaurant</small>
                   <p className="">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Ullam et porro distinctio obcaecati blanditiis aspernatur
-                    fugit tempori...
+                    {productDetails.chef_details &&
+                      productDetails.chef_details[0].desc}
                   </p>
                 </Col>
                 <Col
@@ -69,7 +112,7 @@ export const ProductDetail = () => {
                   className="align-items-center justify-content-center"
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1555952517-2e8e729e0b44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGh1bWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                    src=""
                     alt=""
                     className="rounded-circle"
                     style={{ width: "100px", height: "100px" }}
@@ -83,6 +126,7 @@ export const ProductDetail = () => {
                   variant="dark"
                   className="px-5 py-2 me-3"
                   style={{ borderRadius: "0" }}
+                  onClick={handleAddToCart}
                 >
                   Add to Cart
                 </Button>

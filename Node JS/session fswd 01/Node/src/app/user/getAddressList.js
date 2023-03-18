@@ -18,7 +18,7 @@ exports.getAddress = async (request, response) => {
       //fetches the address data from the Address collection in DB
       const addressList = await Address.find(
         { cid: customerID },
-        "line1 line2 city state",
+        "id line1 line2 city state",
         { lean: true }
       );
       //if no address is fetched from DB - No address exists for the Customer in DB - returns error, else gives success message with address list
