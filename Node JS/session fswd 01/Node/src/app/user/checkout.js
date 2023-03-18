@@ -7,6 +7,7 @@ const {
 const { responseCreator } = require("../../utils/responseCreator");
 const { fetchCustomerID } = require("../../utils/getID");
 const { Orders } = require("../../../model/Orders");
+const mongodb = require("mongodb");
 
 exports.checkout = async (request, response) => {
   //sending the token to fetchCustomerID to get the customer ID from DB
