@@ -18,15 +18,13 @@ const Address = () => {
   let max;
   if (addressList !== undefined) {
     const list = addressList.map((item) => parseInt(item.id));
-    console.log(list);
     max = Math.max(...list);
-    console.log(max);
   }
 
   //request to fetch address
   const addressReq = async () => {
     const response = await axios.get("http://127.0.0.1:5002/address", {
-      headers: { user_id: "somerandomtext" },
+      headers: { token: "somerandomtext" },
     });
     setAddressList(response.data.data);
   };
@@ -46,7 +44,7 @@ const Address = () => {
           state: state,
           phone: phone,
         },
-        { headers: { user_id: "somerandomtext" } }
+        { headers: { token: "somerandomtext" } }
       )
       .then((response) => {
         console.log(response);

@@ -20,23 +20,26 @@ function Checkout() {
 
   const addressReq = async () => {
     const response = await axios.get("http://127.0.0.1:5002/address", {
-      headers: { user_id: "somerandomtext" },
+      headers: { token: "somerandomtext" },
     });
     setAddressList(response.data.data);
   };
 
   const orderCreateReq = async () => {
-    cart.map((item) => {
-      const response = axios
-        .post(
-          "http://127.0.01:5002/order",
-          { itemId: item.id, qty: item.qty, addressId: currentAddressID },
-          { headers: { user_id: "somerandomtext" } }
-        )
-        .then((response) => {
-          console.log(response);
-        });
-    });
+    const itemsArray =
+      cart &&
+      cart.map((item) => {
+        return { itemId: item.id, qty: item.qty };
+      });
+    const response = axios
+      .post(
+        "http://127.0.0.1:5002/order",
+        { items: itemsArray, addressId: currentAddressID },
+        { headers: { token: "somerandomtext" } }
+      )
+      .then((response) => {
+        console.log(response);
+      });
   };
 
   const cart = useSelector((state) => state.cart);
@@ -83,7 +86,7 @@ function Checkout() {
     setTotal(misc.totalPrice);
     console.log(cart);
     addressReq();
-  }, [cart]);
+  }, [cart, total]);
 
   if (addressList === undefined) {
     return <div>Fetching Address...</div>;

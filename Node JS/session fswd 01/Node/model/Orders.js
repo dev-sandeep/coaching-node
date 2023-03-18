@@ -1,20 +1,19 @@
 const { Schema, model } = require("mongoose");
 
 const orderSchema = new Schema({
-  cid: {//customer id
-    type: String,
-    required: true,
-  },
-  itid: {//item id
-    type: String,
-    required: true,
-  },
-  qty: {
+  cid: {
+    //customer id
     type: Number,
     required: true,
   },
-  aid: {//address id
-    type: String,
+  items: {
+    //item id
+    type: Array,
+    required: true,
+  },
+  aid: {
+    //address id
+    type: Number,
     required: true,
   },
   status: {
@@ -24,7 +23,7 @@ const orderSchema = new Schema({
   ts: {
     type: Number,
     required: true,
-    default: Date.now()
+    default: Date.now(),
   },
 });
 

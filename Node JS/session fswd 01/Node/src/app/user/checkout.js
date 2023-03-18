@@ -11,27 +11,26 @@ const { Orders } = require("../../../model/Orders");
 exports.checkout = async (request, response) => {
   //sending the token to fetchCustomerID to get the customer ID from DB
   const customerData = await fetchCustomerID(request.header("token"));
-  const customerID = customerData !== undefined ? customerData._id : undefined;
+  const customerID = customerData !== undefined ? customerData.id : undefined;
   console.log(customerID);
   //if the customerID is not undefined - data exists in DB - then Do the following
   if (customerID !== undefined) {
     try {
       //get itemID, qty & addressID from request.body
-      const { itemId, qty, addressId } = request.body;
+      const { items, qty, addressId } = request.body;
       //if all the details are present in request.body - does the below
       if (
-        itemId !== undefined &&
-        qty !== undefined &&
+        items !== undefined &&
+        items[0] !== undefined &&
         addressId !== undefined
       ) {
         //creates new order
         await Orders.create({
           cid: customerID,
-          itid: itemId,
-          qty: qty,
+          items: items,
           aid: addressId,
-          status: 0,//pending
-          ts: Date.now()
+          status: 0, //pending
+          ts: Date.now(),
         });
 
         //success response for creation of order

@@ -22,7 +22,7 @@ const addressSchema = new Schema({
     required: true,
   },
   cid: {
-    type: String,
+    type: Number,
     required: true,
   },
 });
