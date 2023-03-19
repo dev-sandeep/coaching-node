@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import CartItem from "../components/CartItem";
 import CardWithHeader from "../components/CardWithHeader";
 import CustomButton from "../components/CustomButton";
 //importing dummy values for display
 import { updateTotal, updateTotalPrice } from "../Redux/Actions/misc";
 import { removeFromCart, updateCart } from "../Redux/Actions/cart";
+import { toastError, toastSuccess } from "../Utils/toast";
+import { getCall, postCall } from "../Utils/api";
+import { Link } from "react-router-dom";
+import { Card } from "react-bootstrap";
 
 function Checkout() {
+  //session token
+  const sessionToken = useSelector((state) => state.user);
   const [currentSelectedAddress, setCurrentSelectedAddress] = useState();
   const [addressList, setAddressList] = useState();
   const [currentAddressID, setCurrentAddressID] = useState(1);
@@ -19,10 +24,18 @@ function Checkout() {
   };
 
   const addressReq = async () => {
-    const response = await axios.get("http://127.0.0.1:5002/address", {
-      headers: { token: "somerandomtext" },
+    // const response = await axios.get("http://127.0.0.1:5002/address", {
+    //   headers: { token: sessionToken.token },
+    // });
+    getCall({
+      headers: {
+        token: sessionToken.token,
+      },
+      body: {},
+      url: "http://127.0.0.1:5002/address",
+    }).then((resp) => {
+      setAddressList(resp.data.data);
     });
-    setAddressList(response.data.data);
   };
 
   const orderCreateReq = async () => {
@@ -31,15 +44,18 @@ function Checkout() {
       cart.map((item) => {
         return { itemId: item.id, qty: item.qty };
       });
-    const response = axios
-      .post(
-        "http://127.0.0.1:5002/order",
-        { items: itemsArray, addressId: currentAddressID },
-        { headers: { token: "somerandomtext" } }
-      )
-      .then((response) => {
-        console.log(response);
-      });
+    postCall({
+      headers: { token: sessionToken.token },
+      body: { items: itemsArray, addressId: currentAddressID },
+      url: "http://127.0.0.1:5002/order",
+    }).then((response) => {
+      console.log(response);
+      if (response.status === 200) {
+        toastSuccess("Order Created!");
+      } else {
+        toastError("There was an error creating this order!");
+      }
+    });
   };
 
   const cart = useSelector((state) => state.cart);
@@ -89,7 +105,15 @@ function Checkout() {
   }, [cart, total]);
 
   if (addressList === undefined) {
-    return <div>Fetching Address...</div>;
+    return (
+      <div className="minH-90 d-flex align-items-center justify-content-center">
+        No Address Found, Please go to address page and Add atleast 1 address to
+        continue...
+        <Card className="p-2 bg-dark text-white" as={Link} to={"/address"}>
+          Click Here
+        </Card>
+      </div>
+    );
   }
   return (
     <div>

@@ -3,13 +3,18 @@ import { Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const FoodCard = (
-  { data, index } // data is an object with properties img, title, desc
+  { data, index, product } // data is an object with properties img, title, desc
 ) => {
+  // console.log(data);
   return (
     <Col key={index} className="mb-3">
-      <Card className="border-0 text-decoration-none" as={Link} to="/product">
+      <Card
+        className="border-0 text-decoration-none"
+        as={Link}
+        to={`/product/${product}`}
+      >
         <Card.Img
-          src={data.img}
+          src={data.images[0]}
           alt=""
           className="ratio ratio-1x1 rounded-0"
           style={{
@@ -20,9 +25,9 @@ export const FoodCard = (
         />
         <Card.Body className="m-0 px-0">
           <Card.Title className="fs-5 fw-semibold mb-0 text-dark">
-            {data.title}
+            {data.name}
           </Card.Title>
-          <p className="text-muted fs-6">{data.desc}</p>
+          <p className="text-muted fs-6">{`$${data.price}`}</p>
         </Card.Body>
       </Card>
     </Col>

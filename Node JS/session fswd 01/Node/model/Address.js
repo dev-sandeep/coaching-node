@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const addressSchema = new Schema({
   id: {
     type: String,
-    default: Date.now()
+    default: Date.now(),
   },
   line1: {
     type: String,
