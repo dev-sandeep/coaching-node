@@ -6,14 +6,25 @@ import CustomButton from "../components/CustomButton";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, updateCart } from "../Redux/Actions/cart";
 import { updateTotal, updateTotalPrice } from "../Redux/Actions/misc";
+import { getSessionCart, setSessionCart } from "../Utils/session";
 
 function Cart() {
   //getting values from redux store
   const cart = useSelector((state) => state.cart);
   const misc = useSelector((state) => state.misc);
   const [total, setTotal] = useState(misc.totalPrice);
-
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (cart[0] !== undefined) {
+      setSessionCart(cart);
+    }
+    if (cart[0] === undefined) {
+      const cart = getSessionCart();
+      console.log(cart);
+      dispatch(updateCart(cart));
+    }
+  }, []);
 
   let totalPrice;
   //getting a value array for total

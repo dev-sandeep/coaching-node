@@ -10,8 +10,10 @@ const { Address } = require("../../../model/Address");
 const { fetchCustomerID } = require("../../utils/getID");
 
 exports.addAddress = async (request, response) => {
+  console.log(request.header("token"));
   const customerData = await fetchCustomerID(request.header("token"));
-  const customerID = customerData !== undefined ? customerData._id : undefined;
+  console.log(customerData);
+  const customerID = customerData !== undefined ? customerData.id : undefined;
   if (customerID !== undefined) {
     try {
       const { line1, line2, city, state, phone } = request.body;

@@ -11,6 +11,7 @@ app.use(cors());
 
 //establishing mongo db connection
 const uri = `mongodb+srv://${process.env.UNAME}:${process.env.PASS}@cluster0.kmear1s.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`;
+
 mongoose.connect(uri);
 
 try {

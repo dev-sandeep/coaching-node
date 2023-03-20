@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
-import axios from "axios";
 import moment from "moment/moment";
+import { useSelector } from "react-redux";
+import { getCall } from "../Utils/api";
 
 function OrderDetails() {
+  //session token
+  const sessionToken = useSelector((state) => state.user);
   const [ordersList, setOrdersList] = useState([]);
+  //getting the orders list from orders document
   const orderListReq = async () => {
-    try {
-      const response = axios
-        .get("http://127.0.0.1:5002/get_orders", {
-          headers: { token: "somerandomtext" },
-        })
-        .then((response) => {
-          setOrdersList(response.data.data);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    getCall({
+      headers: {
+        token: sessionToken.token,
+      },
+      body: {},
+      url: "http://127.0.0.1:5002/get_orders",
+    }).then((resp) => {
+      setOrdersList(resp.data.data);
+    });
   };
   let totalArray;
   if (ordersList[0] !== undefined) {

@@ -12,6 +12,7 @@ exports.getOrders = async (request, response) => {
   //if token is presents, fetches the customer id from DB
   const customerData = await fetchCustomerID(request.header("token"));
   const customerID = customerData !== undefined ? customerData.id : undefined;
+
   if (customerID !== undefined) {
     try {
       const aggregate = await Orders.aggregate([
@@ -69,7 +70,8 @@ exports.getOrders = async (request, response) => {
             __v: 0,
           },
         },
-      ]);
+      ]).sort({ ts: 1 });
+      // const aggregate = await Orders.find({ cid: customerID });
       if (aggregate !== undefined) {
         response
           .status(200)

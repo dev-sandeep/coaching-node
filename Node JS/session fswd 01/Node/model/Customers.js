@@ -1,6 +1,8 @@
 const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema({
+  //default id is a number
+  id: Number,
   name: String,
   phone: Number,
   email: {
@@ -13,7 +15,7 @@ const userSchema = new Schema({
   },
   id: {
     type: String,
-    default: Date.now()
+    default: Date.now(),
   },
   token: String,
 });
