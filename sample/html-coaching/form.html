@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <!-- <link rel="stylesheet" href="style.css" type="text/css" /> -->
+    <style>
+        h3,
+        h1{
+            color: yellow;
+        }
+
+
+
+        #fname-label {
+            background: gray;
+            color: white;
+            font-size: 13px;
+        }
+
+        .red-bg{
+            background-color: red;
+        }
+
+        /* [href="http://www.google.com"]{
+            color: red;
+        } */
+        a:hover{
+            color:red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="main">
+
+        <form action="http://www.google.com" method="get">
+            <!-- all form elements goes here -->
+            <h3 class="heading-class" id="heading-id">My Awesome Form</h3>
+            <h1 class="heading-class" id="heading-id">My Awesome Form</h1>
+            <hr />
+            <label id="fname-label" style="color: green;" for="fname">First Name</label>
+            <input id="fname" type="text" name="fname" />
+            <br />
+            <label for="about">About you</label><br />
+            <textarea id="about" rows="10" cols="20">I am writing</textarea>
+            <br />
+            <br />
+            <label class="red-bg">Gender</label>
+            <input type="radio" name="gender" value="m" /> Male
+            <input type="radio" name="gender" value="f" /> Female
+            <br />
+            <label class="red-bg">Hobbies</label>
+            <input type="checkbox" name="hobby" value="sing" /> Singing
+            <input type="checkbox" name="hobby" value="dance" /> Dancing
+            <input type="checkbox" name="hobby" value="art" /> Painting
+            <input type="checkbox" name="hobby" value="others" /> Others
+            <br />
+            <label class="red-bg">Country</label>
+            <select name="Country">
+                <option value="India">India</option>
+                <option value="China">China</option>
+                <option value="USA">USA</option>
+            </select>
+            <br />
+            <br />
+            <br />
+            <a href="http://www.google.com">Google.com</a> | 
+            <a href="http://www.amazon.com">Amazon.com</a>
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+</body>
+
+</html>

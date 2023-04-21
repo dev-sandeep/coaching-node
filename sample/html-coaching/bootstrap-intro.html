@@ -1,0 +1,211 @@
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @media only screen and (min-width: 400px) {
+            .btn-bg-resp {
+                background: red;
+                /* 400px - 1079px */
+            }
+        }
+
+        @media only screen and (min-width: 1080px) {
+
+            .btn-bg-resp {
+                background: aqua;
+            }
+        }
+
+        .main .container-sm {
+            background-color: aliceblue;
+        }
+
+        .main .container-md {
+            background-color: antiquewhite;
+        }
+
+        .main .container-lg {
+            background-color: aquamarine;
+        }
+
+        .main .container-xl {
+            background-color: azure;
+        }
+
+        .main .container-xxl {
+            background-color: cornsilk;
+        }
+
+        .bg-color-yellow {
+            background-color: yellow;
+        }
+
+        .bg-color-pink {
+            background-color: pink;
+        }
+
+        .main-1 {
+            border: 1px solid gray;
+        }
+
+        .parent-flex {
+            display: flex;
+        }
+
+        .child-flex-1 {
+            background-color: aliceblue;
+        }
+
+        .child-flex-2 {
+            background-color: antiquewhite;
+        }
+
+        .child-flex-3 {
+            background-color: aqua;
+        }
+
+        .child-flex {
+            min-width: 200px;
+            min-height: 100px;
+        }
+
+        .h-200{
+            min-height: 200px;
+        }
+        .bg-pink{
+            background-color: pink;
+        }
+
+        .flipkart-text-color-white{
+            color:white !important
+        }
+
+        body nav .container-fluid{
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active flipkart-text-color-white" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    <div class="container">
+        
+        <!-- content goes here -->
+        <div class="row">
+            <div class="col-xl-2 col-lg-3 col-md-6 col-sm-12 bg-warning custom-flipkart-bg-pink">
+                BOX
+            </div>
+            <div class="col-xl-2 col-lg-3  col-md-6 col-sm-12 bg-danger">
+                BOX
+            </div>
+            <div class="col-xl-2 col-lg-3  col-md-6 col-sm-12 bg-success">
+                BOX
+            </div>
+            <div class="col-xl-2 col-lg-3  col-md-6 col-sm-12 bg-primary">
+                BOX
+            </div>
+            <div class="col-xl-2 col-lg-3  col-md-6 col-sm-12 bg-primary">
+                BOX
+            </div>
+        </div>
+    </div>
+    <!-- <h3>This is example of bootstrap</h3>
+    <div class="container">
+        <div class="box-container bg-color-yellow">
+            This is box inside container
+        </div>
+    </div>
+    <hr />
+    <div class="container bg-color-yellow">
+        <button class="btn-bg-resp">class Container</button>
+    </div>
+    <hr />
+    <div class="container-fluid bg-color-pink">
+        <button class="btn-bg-resp">class Container-fluid</button>
+    </div>
+    <hr />
+    <div class="main">
+        <div class="container-sm">container-sm: 100% wide until small breakpoint</div>
+        <div class="container-md">container-md: 100% wide until medium breakpoint</div>
+        <div class="container-lg">container-lg: 100% wide until large breakpoint</div>
+        <div class="container-xl">container-xl: 100% wide until extra large breakpoint</div>
+        <div class="container-xxl">container-xxl: 100% wide until extra extra large breakpoint</div>
+    </div>
+
+    <hr/>
+    <div class="main-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
+                    <div class="bg-color-yellow">
+                        My bootstrap grid layout! 
+                        <i class="fa fa-car"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10">
+                Container
+            </div>
+            <div class="col-lg-2">
+                Side nav
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="parent-flex">
+        <div class="child-flex child-flex-1">Flex1</div>
+        <div class="child-flex child-flex-2">Flex2</div>
+        <div class="child-flex child-flex-3">Flex3</div>
+    </div> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

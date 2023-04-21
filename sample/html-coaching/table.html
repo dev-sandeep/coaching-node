@@ -1,0 +1,89 @@
+<html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <style>
+        td,th{
+            border: 0;
+            background: #ededed;
+        }
+
+        td:hover{
+            background: red;
+            color: white;
+        }
+
+        p.hero-men-highlight{
+            background: yellow;
+        }
+
+        .hero span{
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <!-- all tables goes here -->
+        <table border="1px">
+            <thead>
+                <!-- table heading -->
+                <tr>
+                    <th></th>
+                    <th>Column 2</th>
+                    <th>Column 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- row 1 -->
+                <tr>
+                    <!-- data -->
+                    <td>Data1</td>
+                    <td>Data2</td>
+                    <td>Data3</td>
+                </tr>
+                <!-- row 2 -->
+                <tr>
+                    <!-- data -->
+                    <td>Data2.1</td>
+                    <td>Data2.2</td>
+                    <td>Data2.3</td>
+                </tr>
+                <!-- row 3 -->
+                <tr>
+                    <!-- data -->
+                    <td colspan="3">Data3.1</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Data 4.1</td>
+                    <td>Data 4.2</td>
+                    <td>Data 4.3</td>
+                </tr>
+                <tr>
+                    <!-- <td>Data 5.1</td> -->
+                    <td>Data 5.2</td>
+                    <td>Data 5.3</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td align="center" colspan="3">The end</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="hero">
+        <span class="hero-men-highlight">Spider man</span>
+        <div class="hero-men-highlight">Iron man</div>
+        <p class="hero-men-highlight">Shaktimaan</p>
+        <p class="hero-women">She Hulk</p>
+        <p class="hero-women">Durga</p>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<head>
+    <style type="text/css">
+        .main .box {
+            margin: 1px;
+            width: 100px;
+            height: 200px;
+            background-color: antiquewhite;
+            text-align: center;
+        }
+
+        .main {
+            display: flex;
+        }
+
+        /* ------- */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .left,
+        .right,
+        .center {
+            width: 100px;
+            height: 200px;
+            background-color: aqua;
+            text-align: center;
+            margin: 1px;
+        }
+
+        .center {
+            background-color: papayawhip;
+        }
+
+        .left,
+        .right {
+            flex-grow: 1;
+        }
+
+        .center {
+            flex-grow: 2;
+        }
+
+        /* ------- */
+        .grid {
+            width: 100%;
+            height: 400px;
+            display: grid;
+            grid-template-columns: 100px minmax(100px, 300px) 100px;
+            grid-gap: 10px;
+        }
+
+        .grid .box {
+            background-color: rgb(183, 255, 150);
+            border: 1px solid;
+        }
+
+        /* ---------- */
+        .grid-item {
+            display: grid;
+            grid-gap: 8px;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .grid-item .box {
+            width: 100%;
+            min-height: 100px;
+            min-width: 100px;
+            height: 100%;
+            background-color: beige;
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        .grid-item .box-a {
+            grid-area: 1/1/3/2;
+        }
+
+        .grid-item .box-b {
+            grid-area: 3/1/5/2;
+        }
+
+        .grid-item .box-c {
+            grid-area: 1/2/5/6
+        }
+
+        .grid-item .box-d {
+            grid-area: 1/6/2/7
+        }
+
+        .grid-item .box-e {
+            grid-area: 2/6/5/7
+        }
+
+        a[href] {
+            font-size: 2em;
+        }
+
+        .quote {
+            font-size: 3em;
+        }
+
+        /* --------- */
+        .news-parent{
+            display: flex;
+        }
+
+        .main-news{
+            width: 80%;
+            height: 600px;
+            background: aliceblue;
+        }
+
+        .news-nav{
+            height: 600px;
+            background: azure;
+            width: 20%;
+        }
+
+        img{
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="news-parent">
+        <div class="main-news">
+            <h3>Google News</h3>
+
+            Top Stories:
+
+        </div>
+        <div class="news-nav">
+            <div class="news">
+                Vandebharat News
+                <img src="https://c.ndtvimg.com/2023-04/50llffbc_pm-modi-vande-bharat-express_625x300_08_April_23.jpg?im=FeatureCrop,algorithm=dnn,width=650,height=400" />
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <hr />
+    <hr />
+    <div class="text">
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/ac/He-Man_%28Alex_Ross%27s_art%29.png" />
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </div>
+
+
+    <a class="link" href="http://www.google.com">This is Google!</a>
+    <blockquote><span class="quote">
+            &lsquo;
+        </span>Google is a good search engine!</blockquote>
+    <div class="main">
+        <!-- 3 boxes with same sizes -->
+        <div class="box">
+            1
+        </div>
+        <div class="box">
+            2
+        </div>
+        <div class="box">
+            3
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="container">
+        <div class="left">Left1</div>
+        <div class="center">Center2</div>
+        <div class="center">Center3</div>
+        <div class="center">Center4</div>
+        <div class="right">Left5</div>
+    </div>
+
+    <hr />
+    <div class="grid">
+        <div class="box box-a">A</div>
+        <div class="box box-b">B</div>
+        <div class="box box-c">C</div>
+        <div class="box box-d">D</div>
+        <div class="box box-e">E</div>
+        <div class="box box-f">F</div>
+    </div>
+    <hr />
+    <div class="grid-item">
+        <div class="box box-a">A</div>
+        <div class="box box-b">B</div>
+        <div class="box box-c">C</div>
+        <div class="box box-d">D</div>
+        <div class="box box-e">E</div>
+    </div>
+
+    </div>
+</body>
+
+</html>

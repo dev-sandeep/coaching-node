@@ -1,0 +1,116 @@
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        #my-list {
+            list-style: none;
+        }
+
+        #my-list li {
+            background: aliceblue;
+            padding: 10px;
+            margin: 2px;
+            border: 1px solid gray;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .border{
+            margin: 10px;
+            border: 1px solid gray
+        }
+    </style>
+
+</head>
+
+<body onclick="onClick('body tag')">
+    <div class="container">
+        <!-- <div class="row">
+            <div class="col-lg-10 justify-content-center align-items-center m-5 text-center">
+                <h3>slider goes here</h3>
+                <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active" data-bs-interval="10000">
+                        <img src="https://assets.morningconsult.com/wp-uploads/2021/12/03123031/2_New-Characters.png" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item" data-bs-interval="2000">
+                        <img src="https://wallpaperaccess.com/full/200796.jpg" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://static1.cbrimages.com/wordpress/wp-content/uploads/2019/09/Header-and-social-image-of-big-name-Marvel-heroes.jpg" class="d-block w-100" alt="...">
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="row border" onclick="onClick('parent-row div')">
+            <div class="col-lg-10 border justify-content-center align-items-center m-5 text-center" id="parent-1">
+                <div class="border">
+                <!-- <h3>Event Bubbling</h3>
+                <div id="parent" class="border">
+                    <button id="button" class="btn btn-primary border">Click Event bubble</button>
+                    <button id="button1" class="btn btn-primary border">Click Event bubble1</button>
+                </div>
+                </div> -->
+
+                <hr/>
+                <div class="border">
+                <h3>Event capturing</h3>
+                <div id="parent-capture" class="border" onclick="onClick('parent-capture div')">
+                    <button id="button" onclick="onClick('capture button clicked')" class="btn btn-primary border">Click Capture</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        function onClick(msg){
+            console.log(`Event Capture: ${msg} clicked`);
+        }
+
+        // event bubbling
+        // document.getElementById("parent-1").addEventListener('click', function(){
+        //     console.log("Event-bubble: col-lg-10 clicked");
+        // })
+        
+        // document.getElementById("parent").addEventListener('click', function(){
+        //     console.log("Event-bubble: parent clicked");
+        // })
+
+        // document.getElementById("button").addEventListener('click', function(e){
+        //     // e.stopPropagation();
+        //     console.log("Event-bubble: btn clicked");
+        // })
+        // document.getElementById("button1").addEventListener('click', function(e){
+        //     // e.stopPropagation();
+        //     console.log("Event-bubble: btn1 clicked");
+        // })
+
+        // document.querySelector('body').addEventListener('click', function(){
+        //     console.log("Event-bubble: body clicked");
+        // })
+
+        setTimeout(() => {
+            const myCarouselElement = document.querySelector('#myCarousel')
+
+            const carousel = new bootstrap.Carousel(myCarouselElement, {
+            interval: 1000,
+            touch: false
+            })
+        }, 100);
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"
+        integrity="sha256-a2yjHM4jnF9f54xUQakjZGaqYs/V1CYvWpoqZzC2/Bw=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+
+</html>
