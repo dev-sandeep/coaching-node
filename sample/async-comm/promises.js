@@ -8,8 +8,8 @@ function download(){
         setTimeout(function(){
             console.log("download");
             // api call was successful
-            // resolve("all is well mp3");
-            reject();
+            resolve();
+            // reject();
         }, 1000)
     });
 
