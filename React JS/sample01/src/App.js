@@ -9,6 +9,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route } from 'react-router-dom';
 
 import Todo from './FunctionalTodoComponents/Todo';
+import Child1 from './ClassTodoComponents/Inheritance';
+import Calculator from './Components/Calculator';
+import { SayHello, SayBye } from './Components/Border';
 
 function App() {
 
@@ -19,6 +22,10 @@ function App() {
       {/* all my contents goes here */}
       <div className='container page-css main-content'>
         <Todo />
+        {/* <ChildClass name="sheldon" /> */}
+        <SayHello />
+        {/* <SayBye /> */}
+        {/* <Child1 /> */}
       </div>
 
     </>
